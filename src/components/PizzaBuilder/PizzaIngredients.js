@@ -11,134 +11,119 @@ import {
   Tomato
 } from "./Ingredients";
 
+const pepperOneNums = [
+  { col: 3, row: 1 },
+  { col: 4, row: 2 },
+  { col: 2, row: 5 }
+];
+
+const pepperTwoNums = [{ col: 1, row: 2 }, { col: 5, row: 4 }];
+
+const pepperoniNums = [
+  { col: 2, row: 1 },
+  { col: 4, row: 1 },
+  { col: 1, row: 2 },
+  { col: 1, row: 4 },
+  { col: 2, row: 4 },
+  { col: 4, row: 4 }
+];
+
+const mozerellaNums = [
+  { col: 3, row: 1 },
+  { col: 4, row: 2 },
+  { col: 1, row: 3 },
+  { col: 3, row: 3 },
+  { col: 2, row: 4 }
+];
+
+const mushroomNums = [
+  { col: 4, row: 1 },
+  { col: 3, row: 2 },
+  { col: 5, row: 2 },
+  { col: 2, row: 3 },
+  { col: 4, row: 3 },
+  { col: 2, row: 1 }
+];
+
+const tomatoNums = [
+  { col: 2, row: 2 },
+  { col: 3, row: 3 },
+  { col: 4, row: 3 },
+  { col: 5, row: 3 },
+  { col: 5, row: 4 },
+  { col: 3, row: 5 }
+];
+
+const oliveNums = [
+  { col: 2, row: 1 },
+  { col: 2, row: 2 },
+  { col: 5, row: 2 },
+  { col: 1, row: 4 },
+  { col: 3, row: 4 },
+  { col: 4, row: 5 }
+];
+
 export const pepper = (
   <Fragment>
-    <GridItem col="3" row="1">
-      <PepperOne />
-    </GridItem>
-    <GridItem col="4" row="2">
-      <PepperOne />
-    </GridItem>
-    <GridItem col="2" row="5">
-      <PepperOne />
-    </GridItem>
-    <GridItem col="1" row="2">
-      <PepperTwo />
-    </GridItem>
-    <GridItem col="5" row="4">
-      <PepperTwo />
-    </GridItem>
+    {pepperOneNums.map(item => (
+      <GridItem col={item.col} row={item.row}>
+        <PepperOne />
+      </GridItem>
+    ))}
+    {pepperTwoNums.map(item => (
+      <GridItem col={item.col} row={item.row}>
+        <PepperTwo />
+      </GridItem>
+    ))}
   </Fragment>
 );
 
 export const pepperoni = (
   <Fragment>
-    <GridItem col="2" row="1">
-      <Pepperoni />
-    </GridItem>
-    <GridItem col="4" row="1">
-      <Pepperoni />
-    </GridItem>
-    <GridItem col="1" row="2">
-      <Pepperoni />
-    </GridItem>
-    <GridItem col="1" row="4">
-      <Pepperoni />
-    </GridItem>
-    <GridItem col="2" row="4">
-      <Pepperoni />
-    </GridItem>
-    <GridItem col="4" row="4">
-      <Pepperoni />
-    </GridItem>
+    {pepperoniNums.map(item => (
+      <GridItem col={item.col} row={item.row}>
+        <Pepperoni />
+      </GridItem>
+    ))}
   </Fragment>
 );
 
 export const mozerella = (
   <Fragment>
-    <GridItem col="3" row="1">
-      <Mozerella />
-    </GridItem>
-    <GridItem col="4" row="2">
-      <Mozerella />
-    </GridItem>
-    <GridItem col="1" row="3">
-      <Mozerella />
-    </GridItem>
-    <GridItem col="3" row="3">
-      <Mozerella />
-    </GridItem>
-    <GridItem col="2" row="4">
-      <Mozerella />
-    </GridItem>
+    {mozerellaNums.map(item => (
+      <GridItem col={item.col} row={item.row}>
+        <Mozerella />
+      </GridItem>
+    ))}
   </Fragment>
 );
 
 export const mushroom = (
   <Fragment>
-    <GridItem col="4" row="1">
-      <Mushroom />
-    </GridItem>
-    <GridItem col="3" row="2">
-      <Mushroom />
-    </GridItem>
-    <GridItem col="5" row="2">
-      <Mushroom />
-    </GridItem>
-    <GridItem col="2" row="3">
-      <Mushroom />
-    </GridItem>
-    <GridItem col="4" row="3">
-      <Mushroom />
-    </GridItem>
-    <GridItem col="2" row="1">
-      <Mushroom />
-    </GridItem>
+    {mushroomNums.map(item => (
+      <GridItem col={item.col} row={item.row}>
+        <Mushroom />
+      </GridItem>
+    ))}
   </Fragment>
 );
 
 export const tomato = (
   <Fragment>
-    <GridItem col="2" row="2">
-      <Tomato />
-    </GridItem>
-    <GridItem col="3" row="3">
-      <Tomato />
-    </GridItem>
-    <GridItem col="4" row="3">
-      <Tomato />
-    </GridItem>
-    <GridItem col="5" row="3">
-      <Tomato />
-    </GridItem>
-    <GridItem col="5" row="4">
-      <Tomato />
-    </GridItem>
-    <GridItem col="3" row="5">
-      <Tomato />
-    </GridItem>
+    {tomatoNums.map(item => (
+      <GridItem col={item.col} row={item.row}>
+        <Tomato />
+      </GridItem>
+    ))}
   </Fragment>
 );
 
 export const olive = (
   <Fragment>
-    <GridItem col="2" row="1">
-      <Olive />
-    </GridItem>
-    <GridItem col="2" row="2">
-      <Olive />
-    </GridItem>
-    <GridItem col="5" row="2">
-      <Olive />
-    </GridItem>
-    <GridItem col="1" row="4">
-      <Olive />
-    </GridItem>
-    <GridItem col="3" row="4">
-      <Olive />
-    </GridItem>
-    <GridItem col="4" row="5">
-      <Olive />
-    </GridItem>
+    {oliveNums.map(item => (
+      <GridItem col={item.col} row={item.row}>
+        <Olive />
+      </GridItem>
+    ))}
   </Fragment>
 );
