@@ -5,7 +5,7 @@ import Button from "../Button/Button";
 
 const ToolbarContainer = styled.div`
   margin: 20px auto;
-  width: 0%;
+  width: 80%;
   text-align: center;
   box-shadow: 0 2px 3px #ccc;
   border: 1px solid #eee;
