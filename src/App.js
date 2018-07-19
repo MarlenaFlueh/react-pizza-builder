@@ -1,6 +1,8 @@
 import React, { Component } from "react";
-import PizzaBuilder from "./components/PizzaBuilder/PizzaBuilder";
 import styled from "styled-components";
+
+import PizzaBuilder from "./components/PizzaBuilder/PizzaBuilder";
+import Toolbar from "./components/Toolbar/Toolbar";
 
 const Container = styled.main`
   margin-top: 72px;
@@ -11,6 +13,7 @@ class App extends Component {
   render() {
     return (
       <Container>
+        <Toolbar />
         <PizzaBuilder />
       </Container>
     );
