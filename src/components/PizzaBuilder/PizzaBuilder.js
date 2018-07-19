@@ -7,7 +7,7 @@ import * as ingredients from "./PizzaIngredients";
 const PizzaContainer = styled.div`
   width: 250px;
   height: 250px;
-  margin: auto;
+  margin: 100px auto;
   text-align: center;
   font-weight: bold;
   font-size: 1.2rem;
