@@ -1,8 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import { GridWrapper } from "./GridItems";
-import * as ingredients from "./PizzaIngredients";
+import { GridWrapper, GridItem } from "./GridItems";
 
 const PizzaContainer = styled.div`
   width: 250px;
@@ -28,15 +27,19 @@ const PizzaContainer = styled.div`
   }
 `;
 
-const PizzaBuilder = () => (
+const mapping = (array, Component) =>
+  array.map((item, index) => (
+    <GridItem key={index} col={item.col} row={item.row}>
+      <Component />
+    </GridItem>
+  ));
+
+const PizzaBuilder = props => (
   <PizzaContainer>
     <GridWrapper>
-      {ingredients.mushroom}
-      {ingredients.tomato}
-      {ingredients.pepper}
-      {ingredients.olive}
-      {ingredients.pepperoni}
-      {ingredients.mozerella}
+      {props.ingredients.map(
+        ing => (ing.selected ? mapping(ing.position, ing.style) : null)
+      )}
     </GridWrapper>
   </PizzaContainer>
 );
