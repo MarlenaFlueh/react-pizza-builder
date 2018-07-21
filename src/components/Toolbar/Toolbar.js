@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import styled from "styled-components";
 
 import Button from "../Button/Button";
@@ -17,15 +17,21 @@ const ToolbarContainer = styled.div`
   }
 `;
 
-const Toolbar = ({ clicked }) => (
-  <ToolbarContainer>
-    <Button clicked={clicked} name="Tomato" />
-    <Button clicked={clicked} name="Olive" />
-    <Button clicked={clicked} name="Pepper" />
-    <Button clicked={clicked} name="Mushroom" />
-    <Button clicked={clicked} name="Mozerella" />
-    <Button clicked={clicked} name="Tomato" />
-  </ToolbarContainer>
-);
+class Toolbar extends Component {
+  render() {
+    let ingArray = [];
+    for (let key in this.props.ingredients) {
+      ingArray.push(key);
+    }
+
+    return (
+      <ToolbarContainer>
+        {ingArray.map(ing => (
+          <Button key={ing} clicked={this.props.clicked} name={ing} />
+        ))}
+      </ToolbarContainer>
+    );
+  }
+}
 
 export default Toolbar;

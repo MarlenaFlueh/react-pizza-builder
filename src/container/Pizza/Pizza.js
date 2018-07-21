@@ -13,60 +13,62 @@ const Container = styled.main`
 
 class Pizza extends Component {
   state = {
-    ings: [
-      {
-        name: "Mozerella",
+    ings: {
+      Mozerella: {
         style: ingredients.Mozerella,
         position: positions.mozerella,
         selected: true
       },
-      {
-        name: "Olive",
+      Olive: {
         style: ingredients.Olive,
         position: positions.olive,
         selected: true
       },
-      {
-        name: "Mushroom",
+      Mushroom: {
         style: ingredients.Mushroom,
         position: positions.mushroom,
         selected: true
       },
-      {
-        name: "Pepperoni",
+      Pepperoni: {
         style: ingredients.Pepperoni,
         position: positions.pepperoni,
         selected: true
       },
-      {
-        name: "Pepper",
+      PepperOne: {
         style: ingredients.PepperOne,
         position: positions.pepperOne,
         selected: true
       },
-      {
-        name: "Pepper",
+      PepperTwo: {
         style: ingredients.PepperTwo,
         position: positions.pepperTwo,
         selected: true
       },
-      {
-        name: "Tomato",
+      Tomato: {
         style: ingredients.Tomato,
         position: positions.tomato,
         selected: true
       }
-    ]
+    },
+    test: 1
   };
 
   changeSelectedHandler = name => {
-    console.log(name);
+    let updatedObj = {
+      ...this.state.ings[name],
+      selected: !this.state.ings[name].selected
+    };
+    let updateState = { ...this.state.ings, [name]: updatedObj };
+    this.setState({ ings: updateState });
   };
 
   render() {
     return (
       <Container>
-        <Toolbar clicked={this.changeSelectedHandler} />
+        <Toolbar
+          clicked={this.changeSelectedHandler}
+          ingredients={this.state.ings}
+        />
         <PizzaBuilder ingredients={this.state.ings} />
       </Container>
     );
