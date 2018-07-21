@@ -1,10 +1,10 @@
 import React, { Component } from "react";
+import styled from "styled-components";
 
 import PizzaBuilder from "../../components/PizzaBuilder/PizzaBuilder";
 import Toolbar from "../../components/Toolbar/Toolbar";
 import * as ingredients from "../../components/PizzaBuilder/Ingredients";
 import * as positions from "../../components/PizzaBuilder/IngredientPosition";
-import styled from "styled-components";
 
 const Container = styled.main`
   margin-top: 72px;
@@ -15,36 +15,43 @@ class Pizza extends Component {
   state = {
     ings: {
       Mozerella: {
+        name: "Mozerella",
         style: ingredients.Mozerella,
         position: positions.mozerella,
         selected: true
       },
       Olive: {
+        name: "Olive",
         style: ingredients.Olive,
         position: positions.olive,
-        selected: true
+        selected: false
       },
       Mushroom: {
+        name: "Mushroom",
         style: ingredients.Mushroom,
         position: positions.mushroom,
         selected: true
       },
       Pepperoni: {
+        name: "Pepperoni",
         style: ingredients.Pepperoni,
         position: positions.pepperoni,
         selected: true
       },
-      PepperOne: {
-        style: ingredients.PepperOne,
-        position: positions.pepperOne,
+      Redpepper: {
+        name: "Redpepper",
+        style: ingredients.RedPepper,
+        position: positions.redPepper,
         selected: true
       },
-      PepperTwo: {
-        style: ingredients.PepperTwo,
-        position: positions.pepperTwo,
+      Greenpepper: {
+        name: "Greenpepper",
+        style: ingredients.GreenPepper,
+        position: positions.greenPepper,
         selected: true
       },
       Tomato: {
+        name: "Tomato",
         style: ingredients.Tomato,
         position: positions.tomato,
         selected: true
