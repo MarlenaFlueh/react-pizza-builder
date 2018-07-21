@@ -20,11 +20,10 @@ export const Olive = styled.div`
 export const Mozerella = styled.div`
   width: 25px;
   height: 25px;
-  top: 30px;
+  top: 10px;
   border-radius: 100%;
   background-color: ivory;
   position: relative;
-
   display: block;
 
   @media (min-width: 500px) and (min-height: 401px) {
@@ -33,25 +32,26 @@ export const Mozerella = styled.div`
   }
 `;
 
-export const PepperOne = styled.div`
-  left: 60px;
+export const RedPepper = styled.div`
+  left: 50px;
   width: 5px;
   height: 35px;
   border-radius: 100%;
-  background-color: rgb(18, 190, 61);
+  background-color: #ff0000;
   position: relative;
   transform: rotate(30deg);
 
   @media (min-width: 500px) and (min-height: 401px) {
     width: 10px;
-    height: 70px;
-    left: 50px;
+    height: 50px;
+    left: 40px;
+    top: 0px;
   }
 `;
 
-export const PepperTwo = styled.div`
+export const GreenPepper = styled.div`
   top: 20px;
-  left: -2px;
+  left: 15px;
   width: 5px;
   height: 35px;
   border-radius: 100%;
@@ -61,9 +61,9 @@ export const PepperTwo = styled.div`
 
   @media (min-width: 500px) and (min-height: 401px) {
     width: 10px;
-    height: 70px;
+    height: 50px;
     left: 50px;
-    top: 0;
+    top: 0px;
   }
 `;
 
@@ -139,7 +139,7 @@ position: relative;
 `;
 
 export const Mushroom = styled.div`
-  top: 60px;
+  top: 45px;
   background-color: #c3b5ae;
   position: relative;
   width: 12.5px;
