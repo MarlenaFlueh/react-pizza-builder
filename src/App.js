@@ -1,23 +1,7 @@
-import React, { Component } from "react";
-import styled from "styled-components";
+import React from "react";
 
-import PizzaBuilder from "./components/PizzaBuilder/PizzaBuilder";
-import Toolbar from "./components/Toolbar/Toolbar";
+import Pizza from "./container/Pizza/Pizza";
 
-const Container = styled.main`
-  margin-top: 72px;
-  text-align: center;
-`;
-
-class App extends Component {
-  render() {
-    return (
-      <Container>
-        <Toolbar />
-        <PizzaBuilder />
-      </Container>
-    );
-  }
-}
+const App = () => <Pizza />;
 
 export default App;
