@@ -21,13 +21,18 @@ class Toolbar extends Component {
   render() {
     let ingArray = [];
     for (let key in this.props.ingredients) {
-      ingArray.push(key);
+      ingArray.push({ id: key, config: this.props.ingredients[key] });
     }
 
     return (
       <ToolbarContainer>
         {ingArray.map(ing => (
-          <Button key={ing} clicked={this.props.clicked} name={ing} />
+          <Button
+            key={ing.id}
+            clicked={this.props.clicked}
+            name={ing.config.name}
+            selected={ing.config.selected}
+          />
         ))}
       </ToolbarContainer>
     );
