@@ -11,7 +11,7 @@ const Btn = styled.button`
   padding: 5px;
   margin: 5px;
   font-weight: bold;
-  color: rgb(179, 18, 18);
+  color: ${({ selected }) => (selected ? "#0B610B" : "rgb(179, 18, 18)")};
 
   &:hover {
     color: rgb(159, 18, 18);
@@ -28,9 +28,11 @@ const ButtonBox = styled.div`
   box-sizing: border-box;
 `;
 
-const Button = ({ name, clicked }) => (
+const Button = ({ name, clicked, selected }) => (
   <ButtonBox>
-    <Btn onClick={() => clicked(name)}>{name}</Btn>
+    <Btn selected={selected} onClick={() => clicked(name)}>
+      {name}
+    </Btn>
   </ButtonBox>
 );
 
