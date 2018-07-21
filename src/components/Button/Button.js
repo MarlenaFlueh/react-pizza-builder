@@ -28,9 +28,9 @@ const ButtonBox = styled.div`
   box-sizing: border-box;
 `;
 
-const Button = ({ name }) => (
+const Button = ({ name, clicked }) => (
   <ButtonBox>
-    <Btn>{name}</Btn>
+    <Btn onClick={() => clicked(name)}>{name}</Btn>
   </ButtonBox>
 );
 

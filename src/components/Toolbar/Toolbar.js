@@ -17,14 +17,14 @@ const ToolbarContainer = styled.div`
   }
 `;
 
-const Toolbar = () => (
+const Toolbar = ({ clicked }) => (
   <ToolbarContainer>
-    <Button name="Tomate" />
-    <Button name="Olive" />
-    <Button name="Chili" />
-    <Button name="Pilz" />
-    <Button name="Mozerella" />
-    <Button name="Salami" />
+    <Button clicked={clicked} name="Tomato" />
+    <Button clicked={clicked} name="Olive" />
+    <Button clicked={clicked} name="Pepper" />
+    <Button clicked={clicked} name="Mushroom" />
+    <Button clicked={clicked} name="Mozerella" />
+    <Button clicked={clicked} name="Tomato" />
   </ToolbarContainer>
 );
 
