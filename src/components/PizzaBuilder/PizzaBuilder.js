@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import styled from "styled-components";
 
 import { GridWrapper, GridItem } from "./GridItems";
@@ -34,14 +34,25 @@ const mapping = (array, Component) =>
     </GridItem>
   ));
 
-const PizzaBuilder = props => (
-  <PizzaContainer>
-    <GridWrapper>
-      {props.ingredients.map(
-        ing => (ing.selected ? mapping(ing.position, ing.style) : null)
-      )}
-    </GridWrapper>
-  </PizzaContainer>
-);
+class PizzaBuilder extends Component {
+  render() {
+    let ingredientsArray = [];
+    for (let key in this.props.ingredients) {
+      ingredientsArray.push({ id: key, config: this.props.ingredients[key] });
+    }
 
+    const ingredients = ingredientsArray.map(
+      ing =>
+        ing.config.selected
+          ? mapping(ing.config.position, ing.config.style)
+          : null
+    );
+
+    return (
+      <PizzaContainer>
+        <GridWrapper>{ingredients}</GridWrapper>
+      </PizzaContainer>
+    );
+  }
+}
 export default PizzaBuilder;
