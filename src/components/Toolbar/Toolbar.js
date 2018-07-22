@@ -4,16 +4,21 @@ import styled from "styled-components";
 import Button from "../Button/Button";
 
 const ToolbarContainer = styled.div`
-  margin: 20px auto;
+  margin: 0 5%;
   width: 80%;
   text-align: center;
   box-shadow: 0 2px 3px #ccc;
   border: 1px solid #eee;
   padding: 10px;
   box-sizing: border-box;
+  background-color: #f2f2f2;
 
-  @media (min-width: 600px) {
+  @media (min-width: 500px) and (min-height: 401px) {
     width: 500px;
+  }
+
+  @media (min-width: 1000px) and (min-height: 700px) {
+    width: 700px;
   }
 `;
 
@@ -32,6 +37,7 @@ class Toolbar extends Component {
             clicked={this.props.clicked}
             name={ing.config.name}
             selected={ing.config.selected}
+            ings={this.props.ingredients}
           />
         ))}
       </ToolbarContainer>
