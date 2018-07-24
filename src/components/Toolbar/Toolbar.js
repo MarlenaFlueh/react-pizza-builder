@@ -4,8 +4,7 @@ import styled from "styled-components";
 import Button from "../Button/Button";
 
 const ToolbarContainer = styled.div`
-  margin: 0 5%;
-  width: 80%;
+  width: 100%;
   text-align: center;
   box-shadow: 0 2px 3px #ccc;
   border: 1px solid #eee;
@@ -14,11 +13,11 @@ const ToolbarContainer = styled.div`
   background-color: #f2f2f2;
 
   @media (min-width: 500px) and (min-height: 401px) {
-    width: 500px;
+    width: 150px;
   }
 
   @media (min-width: 1000px) and (min-height: 700px) {
-    width: 700px;
+    width: 200px;
   }
 `;
 

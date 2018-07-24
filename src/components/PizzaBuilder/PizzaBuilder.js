@@ -4,9 +4,9 @@ import styled from "styled-components";
 import { GridWrapper, GridItem } from "./GridItems";
 
 const PizzaContainer = styled.div`
-  width: 250px;
-  height: 250px;
-  margin: 10% 10%;
+  width: 200px;
+  height: 200px;
+  margin: 20% auto;
   text-align: center;
   font-weight: bold;
   font-size: 1.2rem;
@@ -22,8 +22,8 @@ const PizzaContainer = styled.div`
   }
 
   @media (min-width: 1000px) and (min-height: 700px) {
-    width: 500px;
-    height: 500px;
+    width: 400px;
+    height: 400px;
   }
 `;
 

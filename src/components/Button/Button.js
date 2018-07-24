@@ -30,7 +30,6 @@ const Btn = styled.button`
 const ButtonBox = styled.div`
   width: 100%;
   box-sizing: border-box;
-  display: inline;
 `;
 
 class Button extends Component {
