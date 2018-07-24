@@ -5,6 +5,7 @@ import PizzaBuilder from "../../components/PizzaBuilder/PizzaBuilder";
 import Toolbar from "../../components/Toolbar/Toolbar";
 import * as ingredients from "../../components/PizzaBuilder/Ingredients";
 import * as positions from "../../components/PizzaBuilder/IngredientPosition";
+import Heading from "../../components/Heading/Heading";
 
 export const Container = styled.div`
   display: grid;
@@ -17,7 +18,7 @@ export const Container = styled.div`
   top: 0;
   left: 0;
   @media (min-width: 1050px) and (min-height: 700px) {
-    grid-template-columns: 20% 30% 20% 10% 20%;
+    grid-template-columns: 20% 20% 20% 10% 30%;
     grid-auto-rows: 10% 20% 35% 35%;
   }
 `;
@@ -26,10 +27,11 @@ export const SectionOne = styled.div`
   grid-column: 1/6;
   grid-row: 1;
   border: 1px solid black;
+  z-index: 1;
 
   @media (min-width: 1050px) and (min-height: 700px) {
     grid-column: 3/6;
-    grid-row: 2;
+    grid-row: 2/4;
   }
 `;
 
@@ -45,7 +47,8 @@ export const SectionTwo = styled.div`
 
 export const SectionThree = styled.div`
   grid-column: 1/2;
-  grid-row: 3;
+  grid-row: 3/5;
+  background-color: #ffe487;
   border: 1px solid black;
   @media (min-width: 1050px) and (min-height: 700px) {
     grid-column: 1;
@@ -56,6 +59,7 @@ export const SectionThree = styled.div`
 export const SectionFour = styled.div`
   grid-column: 2/6;
   grid-row: 3;
+  background-color: #ffe487;
   border: 1px solid black;
   @media (min-width: 1050px) and (min-height: 700px) {
     grid-column: 2/4;
@@ -66,9 +70,10 @@ export const SectionFour = styled.div`
 export const SectionFive = styled.div`
   grid-column: 2/6;
   grid-row: 4;
+  background-color: #ffe487;
   border: 1px solid black;
   @media (min-width: 1050px) and (min-height: 700px) {
-    grid-column: 2;
+    grid-column: 2/4;
     grid-row: 4;
   }
 `;
@@ -135,7 +140,7 @@ class Pizza extends Component {
     return (
       <Container>
         <SectionOne col="3/5" row="2" color="white">
-          <h1>heading</h1>
+          <Heading />
         </SectionOne>
         <SectionTwo col="4/6" row="1/4" color="grey">
           <h1>body</h1>
