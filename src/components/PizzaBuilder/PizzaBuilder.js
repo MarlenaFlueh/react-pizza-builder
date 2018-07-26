@@ -6,14 +6,13 @@ import { GridWrapper, GridItem } from "./GridItems";
 const PizzaContainer = styled.div`
   width: 200px;
   height: 200px;
-  margin: 20% 0;
+  margin: 20% auto;
   text-align: center;
   font-weight: bold;
-  font-size: 1.2rem;
 
   @media (min-width: 500px) and (min-height: 400px) {
-    width: 350px;
-    height: 350px;
+    width: 200px;
+    height: 200px;
   }
 
   @media (min-width: 500px) and (min-height: 401px) {
@@ -24,6 +23,7 @@ const PizzaContainer = styled.div`
   @media (min-width: 1050px) and (min-height: 700px) {
     width: 400px;
     height: 400px;
+    margin: 20% 0;
   }
 `;
 

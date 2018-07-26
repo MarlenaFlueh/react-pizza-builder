@@ -6,11 +6,11 @@ import Button from "../Button/Button";
 const ToolbarContainer = styled.div`
   width: 100%;
   text-align: center;
-  box-shadow: 0 2px 3px #ccc;
+  box-shadow: 0 2px 3px #fabe5094;
   border: 1px solid #eee;
   padding: 10px;
   box-sizing: border-box;
-  background-color: #f2f2f2;
+  background-color: white;
 
   @media (min-width: 500px) and (min-height: 401px) {
     width: 150px;
