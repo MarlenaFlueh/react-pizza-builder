@@ -3,19 +3,23 @@ import styled from "styled-components";
 
 const HeadingBox = styled.div`
   background-color: white;
-  margin: 0 auto;
-  height: 100%;
-  width: 100%;
   text-align: center;
+  border: 5px solid #ffe487;
+
   @media (min-width: 1050px) and (min-height: 700px) {
-    height: 60%;
-    width: 60%;
+    height: 40%;
+    width: 40%;
+    margin: 10% 10%;
   }
+`;
+
+const H1 = styled.h1`
+  font-size: 3rem;
 `;
 
 const Heading = () => (
   <HeadingBox>
-    <h1>PizzaHus</h1>
+    <H1>PizzaHus</H1>
   </HeadingBox>
 );
 
