@@ -1,1 +1,0 @@
-export { selectIng } from "./ingsActions";
