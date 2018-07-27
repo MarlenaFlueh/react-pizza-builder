@@ -35,14 +35,14 @@ const ButtonBox = styled.div`
 class Button extends Component {
   render() {
     const Item = styled(this.props.ings[this.props.name].style)`
-      margin: auto;
+      margin: 0 auto 10px auto;
       left: 0;
-      top: 10px;
+      top: 5px;
 
       @media (min-width: 500px) and (min-height: 401px) {
-        margin: auto;
+        margin-bottom: 20px;
         left: 0;
-        top: 30px;
+        top: 10px;
       }
     `;
 
@@ -52,8 +52,8 @@ class Button extends Component {
           selected={this.props.selected}
           onClick={() => this.props.clicked(this.props.name)}
         >
-          {this.props.name}
           <Item />
+          {this.props.name}
         </Btn>
       </ButtonBox>
     );
