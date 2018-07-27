@@ -1,1 +1,1 @@
-export { selectIng } from "./ingsActions";
+export { addIngredient, removeIngredient } from "./ingsActions";

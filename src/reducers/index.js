@@ -3,7 +3,7 @@ import { combineReducers } from "redux";
 import ingsReducer from "./ingsReducer";
 
 const rootReducer = combineReducers({
-  ings: ingsReducer
+  ingredients: ingsReducer
 });
 
 export default rootReducer;

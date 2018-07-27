@@ -1,1 +1,2 @@
-export const SELECT_ING = "SELECT_ING";
+export const ADD_INGREDIENT = "ADD_INGREDIENT";
+export const REMOVE_INGREDIENT = "REMOVE_INGREDIENT";
