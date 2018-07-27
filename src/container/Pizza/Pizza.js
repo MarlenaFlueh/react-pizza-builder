@@ -111,12 +111,9 @@ class Pizza extends Component {
         </PizzaGrid.SectionOne>
         <PizzaGrid.SectionTwo />
         <PizzaGrid.SectionThree>
-          <Toolbar
-            clicked={this.changeSelectedHandler}
-            ingredients={this.state.ings}
-          />
+          <Toolbar clicked={this.changeSelectedHandler} />
         </PizzaGrid.SectionThree>
-        <PizzaGrid.SectionFour col="2/4" row="1/4" color="#ffe487">
+        <PizzaGrid.SectionFour>
           <PizzaBuilder ingredients={this.state.ings} />
         </PizzaGrid.SectionFour>
         <PizzaGrid.SectionFive>

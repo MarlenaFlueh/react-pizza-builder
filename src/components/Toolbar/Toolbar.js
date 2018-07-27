@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import { connect } from "react-redux";
 
 import Button from "../Button/Button";
+import * as actions from "../../actions/";
 
 const ToolbarContainer = styled.div`
   width: 100%;
@@ -22,26 +24,40 @@ const ToolbarContainer = styled.div`
 `;
 
 class Toolbar extends Component {
-  render() {
-    let ingArray = [];
-    for (let key in this.props.ingredients) {
-      ingArray.push({ id: key, config: this.props.ingredients[key] });
+  selectIngHandler = name => {
+    if (this.props.ings[name]) {
+      this.props.addIngredient(name);
+    } else {
+      this.props.removeIngredient(name);
     }
+    console.log(name);
+  };
 
-    return (
-      <ToolbarContainer>
-        {ingArray.map(ing => (
-          <Button
-            key={ing.id}
-            clicked={this.props.clicked}
-            name={ing.config.name}
-            selected={ing.config.selected}
-            ings={this.props.ingredients}
-          />
-        ))}
-      </ToolbarContainer>
-    );
+  // const ingredients = Object.keys(this.props.ings).map(ing => {
+  //   if (this.props.ings[ing] === 1) {
+  //     return (
+  //       <Button key={ing} clicked={this.props.selectIngHandler} name={ing} />
+  //     );
+  //   }
+  //   return null;
+  // });
+
+  render() {
+    const ingredients = Object.keys(this.props.ings).map(ing => (
+      <Button key={ing} clicked={this.selectIngHandler} name={ing} />
+    ));
+
+    return <ToolbarContainer>{ingredients}</ToolbarContainer>;
   }
 }
 
-export default Toolbar;
+const mapStateToProps = state => {
+  return {
+    ings: state.ingredients.ings
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  actions
+)(Toolbar);
