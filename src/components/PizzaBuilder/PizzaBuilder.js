@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import { connect } from "react-redux";
 
 import { GridWrapper, GridItem } from "./GridItems";
+import * as positions from "./IngredientPosition";
+import * as styles from "./Ingredients";
 
 const PizzaContainer = styled.div`
   width: 200px;
@@ -36,23 +39,25 @@ const mapping = (array, Component) =>
 
 class PizzaBuilder extends Component {
   render() {
-    let ingredientsArray = [];
-    for (let key in this.props.ingredients) {
-      ingredientsArray.push({ id: key, config: this.props.ingredients[key] });
-    }
-
-    const ingredients = ingredientsArray.map(
-      ing =>
-        ing.config.selected
-          ? mapping(ing.config.position, ing.config.style)
-          : null
-    );
+    const finalIngs = Object.keys(this.props.ings).map(ing => {
+      if (this.props.ings[ing] === 1) {
+        return mapping(positions[ing], styles[ing]);
+      }
+      return null;
+    });
 
     return (
       <PizzaContainer>
-        <GridWrapper>{ingredients}</GridWrapper>
+        <GridWrapper>{finalIngs}</GridWrapper>
       </PizzaContainer>
     );
   }
 }
-export default PizzaBuilder;
+
+const mapStateToProps = state => {
+  return {
+    ings: state.ingredients.ings
+  };
+};
+
+export default connect(mapStateToProps)(PizzaBuilder);

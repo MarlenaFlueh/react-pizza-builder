@@ -31,49 +31,49 @@ class Pizza extends Component {
       Mozerella: {
         name: "Mozerella",
         style: ingredients.Mozerella,
-        position: positions.mozerella,
+        position: positions.Mozerella,
         selected: true,
         price: 1.2
       },
       Olive: {
         name: "Olive",
         style: ingredients.Olive,
-        position: positions.olive,
+        position: positions.Olive,
         selected: true,
         price: 1.0
       },
       Mushroom: {
         name: "Mushroom",
         style: ingredients.Mushroom,
-        position: positions.mushroom,
+        position: positions.Mushroom,
         selected: true,
         price: 1.1
       },
       Pepperoni: {
         name: "Pepperoni",
         style: ingredients.Pepperoni,
-        position: positions.pepperoni,
+        position: positions.Pepperoni,
         selected: true,
         price: 1.3
       },
       Redpepper: {
         name: "Redpepper",
         style: ingredients.RedPepper,
-        position: positions.redPepper,
+        position: positions.RedPepper,
         selected: true,
         price: 1.4
       },
       Greenpepper: {
         name: "Greenpepper",
         style: ingredients.GreenPepper,
-        position: positions.greenPepper,
+        position: positions.GreenPepper,
         selected: true,
         price: 1.4
       },
       Tomato: {
         name: "Tomato",
         style: ingredients.Tomato,
-        position: positions.tomato,
+        position: positions.Tomato,
         selected: true,
         price: 1.0
       }
@@ -111,10 +111,10 @@ class Pizza extends Component {
         </PizzaGrid.SectionOne>
         <PizzaGrid.SectionTwo />
         <PizzaGrid.SectionThree>
-          <Toolbar clicked={this.changeSelectedHandler} />
+          <Toolbar />
         </PizzaGrid.SectionThree>
         <PizzaGrid.SectionFour>
-          <PizzaBuilder ingredients={this.state.ings} />
+          <PizzaBuilder />
         </PizzaGrid.SectionFour>
         <PizzaGrid.SectionFive>
           <OrderOverview

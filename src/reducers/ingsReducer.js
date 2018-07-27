@@ -2,13 +2,13 @@ import * as types from "../actions/types";
 
 const initialState = {
   ings: {
-    Mozerella: 0,
+    Mozerella: 1,
     Olive: 0,
     Mushroom: 0,
-    Pepperoni: 0,
+    Pepperoni: 1,
     RedPepper: 0,
     GreenPepper: 0,
-    Tomato: 0
+    Tomato: 1
   }
 };
 
@@ -17,14 +17,18 @@ const ingsReducer = (state = initialState, action) => {
     case types.ADD_INGREDIENT:
       return {
         ...state,
-        ...state.ings,
-        [action.payload]: 1
+        ings: {
+          ...state.ings,
+          [action.payload]: 1
+        }
       };
     case types.REMOVE_INGREDIENT:
       return {
         ...state,
-        ...state.ings,
-        [action.payload]: 0
+        ings: {
+          ...state.ings,
+          [action.payload]: 0
+        }
       };
     default:
       return state;
