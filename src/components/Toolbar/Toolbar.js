@@ -7,6 +7,7 @@ import * as actions from "../../actions/";
 
 const ToolbarContainer = styled.div`
   width: 100%;
+  height: 100%;
   text-align: center;
   box-shadow: 0 2px 3px #fabe5094;
   border: 1px solid #eee;
@@ -25,22 +26,12 @@ const ToolbarContainer = styled.div`
 
 class Toolbar extends Component {
   selectIngHandler = name => {
-    if (this.props.ings[name]) {
+    if (this.props.ings[name] === 0) {
       this.props.addIngredient(name);
     } else {
       this.props.removeIngredient(name);
     }
-    console.log(name);
   };
-
-  // const ingredients = Object.keys(this.props.ings).map(ing => {
-  //   if (this.props.ings[ing] === 1) {
-  //     return (
-  //       <Button key={ing} clicked={this.props.selectIngHandler} name={ing} />
-  //     );
-  //   }
-  //   return null;
-  // });
 
   render() {
     const ingredients = Object.keys(this.props.ings).map(ing => (

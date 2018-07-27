@@ -42,7 +42,7 @@ class Button extends Component {
       top: 5px;
 
       @media (min-width: 500px) and (min-height: 401px) {
-        margin-bottom: 20px;
+        margin-bottom: 15px;
         left: 0;
         top: 10px;
       }
