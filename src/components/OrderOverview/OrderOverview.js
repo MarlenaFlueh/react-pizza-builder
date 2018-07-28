@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 
+import * as utils from "../../utils";
+import Button from "./Button";
+
 const Ing = styled.label`
   display: block;
   width: 130px;
@@ -28,37 +31,15 @@ const Col = styled.div`
   margin: auto;
 `;
 
-const Button = styled.button`
-  text-decoration: none;
-  border: none;
-  margin: 180px auto 0 0;
-  box-shadow: 2px 2px 2px #fabe5094;
-  border-radius: 2px;
-  background-color: white;
-  height: 70px;
-  width: 130px;
-  font: inherit;
-
-  &:hover {
-    color: grey;
-    cursor: pointer;
-  }
-`;
-
 class OrderOverview extends Component {
   render() {
-    let ingredientsArray = [];
-    for (let key in this.props.ingredients) {
-      ingredientsArray.push({ id: key, config: this.props.ingredients[key] });
-    }
-
-    let ingredients = ingredientsArray.map(ing => {
-      if (ing.config.selected) {
+    const ingredients = Object.keys(this.props.ings).map(ing => {
+      if (this.props.ings[ing] === 1) {
         return (
-          <div key={ing.id}>
+          <div key={ing}>
             <Span>
-              <Ing>{ing.config.name}</Ing>
-              {ing.config.price.toFixed(2)}€
+              <Ing>{ing}</Ing>
+              {utils.prices[ing].toFixed(2)}€
             </Span>
           </div>
         );

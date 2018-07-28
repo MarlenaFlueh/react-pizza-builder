@@ -5,8 +5,6 @@ import { connect } from "react-redux";
 import * as actions from "../../actions/";
 import PizzaBuilder from "../../components/PizzaBuilder/PizzaBuilder";
 import Toolbar from "../../components/Toolbar/Toolbar";
-import * as ingredients from "../../components/PizzaBuilder/Ingredients";
-import * as positions from "../../components/PizzaBuilder/IngredientPosition";
 import Heading from "../../components/Heading/Heading";
 import * as PizzaGrid from "./PizzaGrid";
 import OrderOverview from "../../components/OrderOverview/OrderOverview";
@@ -28,61 +26,6 @@ export const Container = styled.div`
 `;
 
 class Pizza extends Component {
-  state = {
-    ings: {
-      Mozerella: {
-        name: "Mozerella",
-        style: ingredients.Mozerella,
-        position: positions.Mozerella,
-        selected: true,
-        price: 1.2
-      },
-      Olive: {
-        name: "Olive",
-        style: ingredients.Olive,
-        position: positions.Olive,
-        selected: true,
-        price: 1.0
-      },
-      Mushroom: {
-        name: "Mushroom",
-        style: ingredients.Mushroom,
-        position: positions.Mushroom,
-        selected: true,
-        price: 1.1
-      },
-      Pepperoni: {
-        name: "Pepperoni",
-        style: ingredients.Pepperoni,
-        position: positions.Pepperoni,
-        selected: true,
-        price: 1.3
-      },
-      Redpepper: {
-        name: "Redpepper",
-        style: ingredients.RedPepper,
-        position: positions.RedPepper,
-        selected: true,
-        price: 1.4
-      },
-      Greenpepper: {
-        name: "Greenpepper",
-        style: ingredients.GreenPepper,
-        position: positions.GreenPepper,
-        selected: true,
-        price: 1.4
-      },
-      Tomato: {
-        name: "Tomato",
-        style: ingredients.Tomato,
-        position: positions.Tomato,
-        selected: true,
-        price: 1.0
-      }
-    },
-    fullPrice: 13.4
-  };
-
   selectIngHandler = name => {
     if (this.props.ings[name] === 0) {
       this.props.addIngredient(name);
@@ -90,28 +33,6 @@ class Pizza extends Component {
       this.props.removeIngredient(name);
     }
   };
-
-  // changeSelectedHandler = name => {
-  //   let updateSelectedObj = {
-  //     ...this.state.ings[name],
-  //     selected: !this.state.ings[name].selected
-  //   };
-  //   let updateIngs = { ...this.state.ings, [name]: updateSelectedObj };
-
-  //   this.setState(() => {
-  //     if (this.state.ings[name].selected) {
-  //       return {
-  //         ings: updateIngs,
-  //         fullPrice: this.state.fullPrice - this.state.ings[name].price
-  //       };
-  //     } else {
-  //       return {
-  //         ings: updateIngs,
-  //         fullPrice: this.state.fullPrice + this.state.ings[name].price
-  //       };
-  //     }
-  //   });
-  // };
 
   render() {
     return (
@@ -128,8 +49,8 @@ class Pizza extends Component {
         </PizzaGrid.SectionFour>
         <PizzaGrid.SectionFive>
           <OrderOverview
-            ingredients={this.state.ings}
-            fullPrice={this.state.fullPrice}
+            ings={this.props.ings}
+            fullPrice={this.props.fullPrice}
           />
         </PizzaGrid.SectionFive>
       </Container>
@@ -139,7 +60,8 @@ class Pizza extends Component {
 
 const mapStateToProps = state => {
   return {
-    ings: state.ingredients.ings
+    ings: state.ingredients.ings,
+    fullPrice: state.ingredients.fullPrice
   };
 };
 

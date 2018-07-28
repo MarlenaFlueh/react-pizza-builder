@@ -1,4 +1,5 @@
 import * as types from "../actions/types";
+import * as utils from "../utils";
 
 const initialState = {
   ings: {
@@ -10,17 +11,7 @@ const initialState = {
     GreenPepper: 0,
     Tomato: 1
   },
-  fullPrice: 6
-};
-
-const prices = {
-  mozerella: 1.2,
-  olive: 1.1,
-  mushroom: 1.3,
-  pepperoni: 1.2,
-  redPepper: 1.3,
-  greenPepper: 1.3,
-  tomato: 1
+  fullPrice: 8.4
 };
 
 const ingsReducer = (state = initialState, action) => {
@@ -31,7 +22,8 @@ const ingsReducer = (state = initialState, action) => {
         ings: {
           ...state.ings,
           [action.payload]: 1
-        }
+        },
+        fullPrice: state.fullPrice + utils.prices[action.payload]
       };
     case types.REMOVE_INGREDIENT:
       return {
