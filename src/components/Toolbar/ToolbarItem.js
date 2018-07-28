@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 
 import * as ingredients from "../../components/PizzaBuilder/Ingredients";
+import * as utils from "../../utils";
 
 const Btn = styled.button`
   background-color: transparent;
@@ -36,7 +37,7 @@ const ItemBox = styled.div`
 
 class ToolbarItem extends Component {
   render() {
-    const Item = styled(ingredients[this.props.name])`
+    const Item = styled(ingredients[utils.capitalize(this.props.name)])`
       margin: 0 auto 10px auto;
       left: 0;
       top: 5px;
@@ -52,7 +53,7 @@ class ToolbarItem extends Component {
       <ItemBox>
         <Btn onClick={() => this.props.clicked(this.props.name)}>
           <Item name={this.props.name} />
-          {this.props.name}
+          {utils.capitalize(this.props.name)}
         </Btn>
       </ItemBox>
     );

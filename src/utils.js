@@ -1,9 +1,12 @@
 export const prices = {
-  Mozerella: 1.2,
-  Olive: 1.1,
-  Mushroom: 1.3,
-  Pepperoni: 1.2,
-  RedPepper: 1.3,
-  GreenPepper: 1.3,
-  Tomato: 1
+  mozerella: 1.2,
+  olive: 1.1,
+  mushroom: 1.3,
+  pepperoni: 1.2,
+  redPepper: 1.3,
+  greenPepper: 1.3,
+  tomato: 1
 };
+
+export const capitalize = string =>
+  string.charAt(0).toUpperCase() + string.slice(1);

@@ -3,13 +3,13 @@ import * as utils from "../utils";
 
 const initialState = {
   ings: {
-    Mozerella: 1,
-    Olive: 0,
-    Mushroom: 0,
-    Pepperoni: 1,
-    RedPepper: 0,
-    GreenPepper: 0,
-    Tomato: 1
+    mozerella: 1,
+    olive: 0,
+    mushroom: 0,
+    pepperoni: 1,
+    redPepper: 0,
+    greenPepper: 0,
+    tomato: 1
   },
   fullPrice: 8.4
 };

@@ -1,4 +1,4 @@
-export const RedPepper = [
+export const redPepper = [
   { col: 3, row: 1 },
   { col: 1, row: 2 },
   { col: 4, row: 2 },
@@ -6,7 +6,7 @@ export const RedPepper = [
   { col: 4, row: 4 }
 ];
 
-export const GreenPepper = [
+export const greenPepper = [
   { col: 5, row: 2 },
   { col: 2, row: 2 },
   { col: 1, row: 3 },
@@ -14,7 +14,7 @@ export const GreenPepper = [
   { col: 2, row: 4 }
 ];
 
-export const Pepperoni = [
+export const pepperoni = [
   { col: 2, row: 1 },
   { col: 4, row: 1 },
   { col: 1, row: 2 },
@@ -25,7 +25,7 @@ export const Pepperoni = [
   { col: 3, row: 4 }
 ];
 
-export const Mozerella = [
+export const mozerella = [
   { col: 2, row: 1 },
   { col: 4, row: 1 },
   { col: 1, row: 2 },
@@ -38,7 +38,7 @@ export const Mozerella = [
   { col: 2, row: 4 }
 ];
 
-export const Mushroom = [
+export const mushroom = [
   { col: 4, row: 1 },
   { col: 2, row: 1 },
   { col: 3, row: 2 },
@@ -48,7 +48,7 @@ export const Mushroom = [
   { col: 3, row: 4 }
 ];
 
-export const Tomato = [
+export const tomato = [
   { col: 3, row: 1 },
   { col: 2, row: 2 },
   { col: 4, row: 2 },
@@ -59,7 +59,7 @@ export const Tomato = [
   { col: 4, row: 4 }
 ];
 
-export const Olive = [
+export const olive = [
   { col: 2, row: 1 },
   { col: 4, row: 1 },
   { col: 1, row: 2 },

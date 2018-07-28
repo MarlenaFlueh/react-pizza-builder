@@ -5,7 +5,7 @@ import ToolbarItem from "./ToolbarItem";
 
 const ToolbarContainer = styled.div`
   width: 100%;
-  height: 100%;
+  height: auto;
   text-align: center;
   box-shadow: 0 2px 3px #fabe5094;
   border: 1px solid #eee;
@@ -19,6 +19,7 @@ const ToolbarContainer = styled.div`
 
   @media (min-width: 1000px) and (min-height: 700px) {
     width: 200px;
+    height: 100%;
   }
 `;
 

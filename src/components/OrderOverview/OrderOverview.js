@@ -22,6 +22,7 @@ const Row = styled.div`
 
   @media (min-width: 1000px) and (min-height: 700px) {
     flex-direction: row;
+    height: 90%;
   }
 `;
 
@@ -29,6 +30,11 @@ const Col = styled.div`
   display: flex;
   flex-flow: column;
   margin: auto;
+  height: 100%;
+`;
+
+const H2 = styled.h2`
+  margin-top: 0;
 `;
 
 class OrderOverview extends Component {
@@ -38,7 +44,7 @@ class OrderOverview extends Component {
         return (
           <div key={ing}>
             <Span>
-              <Ing>{ing}</Ing>
+              <Ing>{utils.capitalize(ing)}</Ing>
               {utils.prices[ing].toFixed(2)}€
             </Span>
           </div>
@@ -50,7 +56,7 @@ class OrderOverview extends Component {
     return (
       <Row>
         <Col>
-          <h2>Gesamtpreis: {this.props.fullPrice.toFixed(2)}€</h2>
+          <H2>Gesamtpreis: {this.props.fullPrice.toFixed(2)}€</H2>
           {ingredients}
         </Col>
         <Button>bestellen</Button>

@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { GridWrapper, GridItem } from "./GridItems";
 import * as positions from "./IngredientPosition";
 import * as styles from "./Ingredients";
+import * as utils from "../../utils";
 
 const PizzaContainer = styled.div`
   width: 200px;
@@ -40,7 +41,7 @@ class PizzaBuilder extends Component {
   render() {
     const finalIngs = Object.keys(this.props.ings).map(ing => {
       if (this.props.ings[ing] === 1) {
-        return mapping(positions[ing], styles[ing]);
+        return mapping(positions[ing], styles[utils.capitalize(ing)]);
       }
       return null;
     });

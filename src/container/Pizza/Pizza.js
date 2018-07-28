@@ -3,10 +3,10 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 
 import * as actions from "../../actions/";
+import * as PizzaGrid from "./PizzaGrid";
 import PizzaBuilder from "../../components/PizzaBuilder/PizzaBuilder";
 import Toolbar from "../../components/Toolbar/Toolbar";
 import Heading from "../../components/Heading/Heading";
-import * as PizzaGrid from "./PizzaGrid";
 import OrderOverview from "../../components/OrderOverview/OrderOverview";
 
 export const Container = styled.div`
