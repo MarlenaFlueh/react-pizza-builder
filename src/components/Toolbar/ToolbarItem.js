@@ -1,20 +1,23 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 
+import * as ingredients from "../../components/PizzaBuilder/Ingredients";
+import * as utils from "../../utils";
+
 const Btn = styled.button`
   background-color: transparent;
   border: none;
-  color: white;
+  color: black;
   outline: none;
   cursor: pointer;
   font: inherit;
   padding: 10px 10px 30px 10px;
   margin: 0px 10px;
   font-weight: bold;
-  color: ${({ selected }) => (selected ? "#0B610B" : "rgb(179, 18, 18)")};
+  color: "#0B610B";
 
   &:hover {
-    color: rgb(159, 18, 18);
+    color: grey;
   }
 
   &:first-of-type {
@@ -27,37 +30,34 @@ const Btn = styled.button`
   }
 `;
 
-const ButtonBox = styled.div`
+const ItemBox = styled.div`
   width: 100%;
   box-sizing: border-box;
 `;
 
-class Button extends Component {
+class ToolbarItem extends Component {
   render() {
-    const Item = styled(this.props.ings[this.props.name].style)`
+    const Item = styled(ingredients[utils.capitalize(this.props.name)])`
       margin: 0 auto 10px auto;
       left: 0;
       top: 5px;
 
       @media (min-width: 500px) and (min-height: 401px) {
-        margin-bottom: 20px;
+        margin-bottom: 15px;
         left: 0;
         top: 10px;
       }
     `;
 
     return (
-      <ButtonBox>
-        <Btn
-          selected={this.props.selected}
-          onClick={() => this.props.clicked(this.props.name)}
-        >
-          <Item />
-          {this.props.name}
+      <ItemBox>
+        <Btn onClick={() => this.props.clicked(this.props.name)}>
+          <Item name={this.props.name} />
+          {utils.capitalize(this.props.name)}
         </Btn>
-      </ButtonBox>
+      </ItemBox>
     );
   }
 }
 
-export default Button;
+export default ToolbarItem;

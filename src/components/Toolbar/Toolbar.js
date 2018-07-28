@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 
-import Button from "../Button/Button";
+import ToolbarItem from "./ToolbarItem";
 
 const ToolbarContainer = styled.div`
   width: 100%;
+  height: auto;
   text-align: center;
   box-shadow: 0 2px 3px #fabe5094;
   border: 1px solid #eee;
@@ -18,29 +19,17 @@ const ToolbarContainer = styled.div`
 
   @media (min-width: 1000px) and (min-height: 700px) {
     width: 200px;
+    height: 100%;
   }
 `;
 
 class Toolbar extends Component {
   render() {
-    let ingArray = [];
-    for (let key in this.props.ingredients) {
-      ingArray.push({ id: key, config: this.props.ingredients[key] });
-    }
+    const ingredients = Object.keys(this.props.ings).map(ing => (
+      <ToolbarItem key={ing} clicked={this.props.clicked} name={ing} />
+    ));
 
-    return (
-      <ToolbarContainer>
-        {ingArray.map(ing => (
-          <Button
-            key={ing.id}
-            clicked={this.props.clicked}
-            name={ing.config.name}
-            selected={ing.config.selected}
-            ings={this.props.ingredients}
-          />
-        ))}
-      </ToolbarContainer>
-    );
+    return <ToolbarContainer>{ingredients}</ToolbarContainer>;
   }
 }
 

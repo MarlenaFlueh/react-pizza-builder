@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const SectionOne = styled.div`
+export const BrandGrid = styled.div`
   grid-column: 1/6;
   grid-row: 1/2;
   z-index: 1;
@@ -11,7 +11,7 @@ export const SectionOne = styled.div`
   }
 `;
 
-export const SectionTwo = styled.div`
+export const ImageGrid = styled.div`
   grid-column: 1/6;
   grid-row: 2;
   background-color: white;
@@ -22,7 +22,7 @@ export const SectionTwo = styled.div`
   }
 `;
 
-export const SectionThree = styled.div`
+export const ToolbarGrid = styled.div`
   grid-column: 1/2;
   grid-row: 3/5;
 
@@ -32,7 +32,7 @@ export const SectionThree = styled.div`
   }
 `;
 
-export const SectionFour = styled.div`
+export const PizzaBuilderGrid = styled.div`
   grid-column: 2/6;
   grid-row: 3;
 
@@ -42,7 +42,7 @@ export const SectionFour = styled.div`
   }
 `;
 
-export const SectionFive = styled.div`
+export const OrderGrid = styled.div`
   grid-column: 2/6;
   grid-row: 4;
   @media (min-width: 1050px) and (min-height: 700px) {

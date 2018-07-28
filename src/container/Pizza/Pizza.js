@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import { connect } from "react-redux";
 
+import * as actions from "../../actions/";
+import * as Grid from "./PizzaGrid";
 import PizzaBuilder from "../../components/PizzaBuilder/PizzaBuilder";
 import Toolbar from "../../components/Toolbar/Toolbar";
-import * as ingredients from "../../components/PizzaBuilder/Ingredients";
-import * as positions from "../../components/PizzaBuilder/IngredientPosition";
 import Heading from "../../components/Heading/Heading";
-import * as PizzaGrid from "./PizzaGrid";
 import OrderOverview from "../../components/OrderOverview/OrderOverview";
 
 export const Container = styled.div`
@@ -26,108 +26,46 @@ export const Container = styled.div`
 `;
 
 class Pizza extends Component {
-  state = {
-    ings: {
-      Mozerella: {
-        name: "Mozerella",
-        style: ingredients.Mozerella,
-        position: positions.mozerella,
-        selected: true,
-        price: 1.2
-      },
-      Olive: {
-        name: "Olive",
-        style: ingredients.Olive,
-        position: positions.olive,
-        selected: true,
-        price: 1.0
-      },
-      Mushroom: {
-        name: "Mushroom",
-        style: ingredients.Mushroom,
-        position: positions.mushroom,
-        selected: true,
-        price: 1.1
-      },
-      Pepperoni: {
-        name: "Pepperoni",
-        style: ingredients.Pepperoni,
-        position: positions.pepperoni,
-        selected: true,
-        price: 1.3
-      },
-      Redpepper: {
-        name: "Redpepper",
-        style: ingredients.RedPepper,
-        position: positions.redPepper,
-        selected: true,
-        price: 1.4
-      },
-      Greenpepper: {
-        name: "Greenpepper",
-        style: ingredients.GreenPepper,
-        position: positions.greenPepper,
-        selected: true,
-        price: 1.4
-      },
-      Tomato: {
-        name: "Tomato",
-        style: ingredients.Tomato,
-        position: positions.tomato,
-        selected: true,
-        price: 1.0
-      }
-    },
-    fullPrice: 13.4
-  };
-
-  changeSelectedHandler = name => {
-    let updateSelectedObj = {
-      ...this.state.ings[name],
-      selected: !this.state.ings[name].selected
-    };
-    let updateIngs = { ...this.state.ings, [name]: updateSelectedObj };
-
-    this.setState(() => {
-      if (this.state.ings[name].selected) {
-        return {
-          ings: updateIngs,
-          fullPrice: this.state.fullPrice - this.state.ings[name].price
-        };
-      } else {
-        return {
-          ings: updateIngs,
-          fullPrice: this.state.fullPrice + this.state.ings[name].price
-        };
-      }
-    });
+  selectIngHandler = name => {
+    if (this.props.ings[name] === 0) {
+      this.props.addIngredient(name);
+    } else {
+      this.props.removeIngredient(name);
+    }
   };
 
   render() {
     return (
       <Container>
-        <PizzaGrid.SectionOne>
+        <Grid.BrandGrid>
           <Heading />
-        </PizzaGrid.SectionOne>
-        <PizzaGrid.SectionTwo />
-        <PizzaGrid.SectionThree>
-          <Toolbar
-            clicked={this.changeSelectedHandler}
-            ingredients={this.state.ings}
-          />
-        </PizzaGrid.SectionThree>
-        <PizzaGrid.SectionFour col="2/4" row="1/4" color="#ffe487">
-          <PizzaBuilder ingredients={this.state.ings} />
-        </PizzaGrid.SectionFour>
-        <PizzaGrid.SectionFive>
+        </Grid.BrandGrid>
+        <Grid.ImageGrid />
+        <Grid.ToolbarGrid>
+          <Toolbar clicked={this.selectIngHandler} ings={this.props.ings} />
+        </Grid.ToolbarGrid>
+        <Grid.PizzaBuilderGrid>
+          <PizzaBuilder ings={this.props.ings} />
+        </Grid.PizzaBuilderGrid>
+        <Grid.OrderGrid>
           <OrderOverview
-            ingredients={this.state.ings}
-            fullPrice={this.state.fullPrice}
+            ings={this.props.ings}
+            fullPrice={this.props.fullPrice}
           />
-        </PizzaGrid.SectionFive>
+        </Grid.OrderGrid>
       </Container>
     );
   }
 }
 
-export default Pizza;
+const mapStateToProps = state => {
+  return {
+    ings: state.ingredients.ings,
+    fullPrice: state.ingredients.fullPrice
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  actions
+)(Pizza);
