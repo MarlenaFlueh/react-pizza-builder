@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 
 import * as actions from "../../actions/";
-import * as PizzaGrid from "./PizzaGrid";
+import * as Grid from "./PizzaGrid";
 import PizzaBuilder from "../../components/PizzaBuilder/PizzaBuilder";
 import Toolbar from "../../components/Toolbar/Toolbar";
 import Heading from "../../components/Heading/Heading";
@@ -37,22 +37,22 @@ class Pizza extends Component {
   render() {
     return (
       <Container>
-        <PizzaGrid.SectionOne>
+        <Grid.BrandGrid>
           <Heading />
-        </PizzaGrid.SectionOne>
-        <PizzaGrid.SectionTwo />
-        <PizzaGrid.SectionThree>
+        </Grid.BrandGrid>
+        <Grid.ImageGrid />
+        <Grid.ToolbarGrid>
           <Toolbar clicked={this.selectIngHandler} ings={this.props.ings} />
-        </PizzaGrid.SectionThree>
-        <PizzaGrid.SectionFour>
+        </Grid.ToolbarGrid>
+        <Grid.PizzaBuilderGrid>
           <PizzaBuilder ings={this.props.ings} />
-        </PizzaGrid.SectionFour>
-        <PizzaGrid.SectionFive>
+        </Grid.PizzaBuilderGrid>
+        <Grid.OrderGrid>
           <OrderOverview
             ings={this.props.ings}
             fullPrice={this.props.fullPrice}
           />
-        </PizzaGrid.SectionFive>
+        </Grid.OrderGrid>
       </Container>
     );
   }
