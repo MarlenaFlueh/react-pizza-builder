@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { connect } from "react-redux";
 
 import { GridWrapper, GridItem } from "./GridItems";
 import * as positions from "./IngredientPosition";
@@ -54,10 +53,4 @@ class PizzaBuilder extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    ings: state.ingredients.ings
-  };
-};
-
-export default connect(mapStateToProps)(PizzaBuilder);
+export default PizzaBuilder;

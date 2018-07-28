@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { connect } from "react-redux";
 
 import Button from "../Button/Button";
-import * as actions from "../../actions/";
 
 const ToolbarContainer = styled.div`
   width: 100%;
@@ -25,30 +23,13 @@ const ToolbarContainer = styled.div`
 `;
 
 class Toolbar extends Component {
-  selectIngHandler = name => {
-    if (this.props.ings[name] === 0) {
-      this.props.addIngredient(name);
-    } else {
-      this.props.removeIngredient(name);
-    }
-  };
-
   render() {
     const ingredients = Object.keys(this.props.ings).map(ing => (
-      <Button key={ing} clicked={this.selectIngHandler} name={ing} />
+      <Button key={ing} clicked={this.props.clicked} name={ing} />
     ));
 
     return <ToolbarContainer>{ingredients}</ToolbarContainer>;
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    ings: state.ingredients.ings
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  actions
-)(Toolbar);
+export default Toolbar;

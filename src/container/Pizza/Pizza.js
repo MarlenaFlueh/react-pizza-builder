@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import { connect } from "react-redux";
 
+import * as actions from "../../actions/";
 import PizzaBuilder from "../../components/PizzaBuilder/PizzaBuilder";
 import Toolbar from "../../components/Toolbar/Toolbar";
 import * as ingredients from "../../components/PizzaBuilder/Ingredients";
@@ -81,27 +83,35 @@ class Pizza extends Component {
     fullPrice: 13.4
   };
 
-  changeSelectedHandler = name => {
-    let updateSelectedObj = {
-      ...this.state.ings[name],
-      selected: !this.state.ings[name].selected
-    };
-    let updateIngs = { ...this.state.ings, [name]: updateSelectedObj };
-
-    this.setState(() => {
-      if (this.state.ings[name].selected) {
-        return {
-          ings: updateIngs,
-          fullPrice: this.state.fullPrice - this.state.ings[name].price
-        };
-      } else {
-        return {
-          ings: updateIngs,
-          fullPrice: this.state.fullPrice + this.state.ings[name].price
-        };
-      }
-    });
+  selectIngHandler = name => {
+    if (this.props.ings[name] === 0) {
+      this.props.addIngredient(name);
+    } else {
+      this.props.removeIngredient(name);
+    }
   };
+
+  // changeSelectedHandler = name => {
+  //   let updateSelectedObj = {
+  //     ...this.state.ings[name],
+  //     selected: !this.state.ings[name].selected
+  //   };
+  //   let updateIngs = { ...this.state.ings, [name]: updateSelectedObj };
+
+  //   this.setState(() => {
+  //     if (this.state.ings[name].selected) {
+  //       return {
+  //         ings: updateIngs,
+  //         fullPrice: this.state.fullPrice - this.state.ings[name].price
+  //       };
+  //     } else {
+  //       return {
+  //         ings: updateIngs,
+  //         fullPrice: this.state.fullPrice + this.state.ings[name].price
+  //       };
+  //     }
+  //   });
+  // };
 
   render() {
     return (
@@ -111,10 +121,10 @@ class Pizza extends Component {
         </PizzaGrid.SectionOne>
         <PizzaGrid.SectionTwo />
         <PizzaGrid.SectionThree>
-          <Toolbar />
+          <Toolbar clicked={this.selectIngHandler} ings={this.props.ings} />
         </PizzaGrid.SectionThree>
         <PizzaGrid.SectionFour>
-          <PizzaBuilder />
+          <PizzaBuilder ings={this.props.ings} />
         </PizzaGrid.SectionFour>
         <PizzaGrid.SectionFive>
           <OrderOverview
@@ -127,4 +137,13 @@ class Pizza extends Component {
   }
 }
 
-export default Pizza;
+const mapStateToProps = state => {
+  return {
+    ings: state.ingredients.ings
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  actions
+)(Pizza);
