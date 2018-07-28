@@ -29,12 +29,12 @@ const Btn = styled.button`
   }
 `;
 
-const ButtonBox = styled.div`
+const ItemBox = styled.div`
   width: 100%;
   box-sizing: border-box;
 `;
 
-class Button extends Component {
+class ToolbarItem extends Component {
   render() {
     const Item = styled(ingredients[this.props.name])`
       margin: 0 auto 10px auto;
@@ -49,14 +49,14 @@ class Button extends Component {
     `;
 
     return (
-      <ButtonBox>
+      <ItemBox>
         <Btn onClick={() => this.props.clicked(this.props.name)}>
-          <Item />
+          <Item name={this.props.name} />
           {this.props.name}
         </Btn>
-      </ButtonBox>
+      </ItemBox>
     );
   }
 }
 
-export default Button;
+export default ToolbarItem;

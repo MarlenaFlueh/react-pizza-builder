@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 
-import Button from "../Button/Button";
+import ToolbarItem from "./ToolbarItem";
 
 const ToolbarContainer = styled.div`
   width: 100%;
@@ -25,7 +25,7 @@ const ToolbarContainer = styled.div`
 class Toolbar extends Component {
   render() {
     const ingredients = Object.keys(this.props.ings).map(ing => (
-      <Button key={ing} clicked={this.props.clicked} name={ing} />
+      <ToolbarItem key={ing} clicked={this.props.clicked} name={ing} />
     ));
 
     return <ToolbarContainer>{ingredients}</ToolbarContainer>;
