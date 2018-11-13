@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import { withRouter} from "react-router-dom";
 
 import * as utils from "../../utils";
 import Button from "./Button";
@@ -38,6 +39,11 @@ const H2 = styled.h2`
 `;
 
 class OrderOverview extends Component {
+
+  redirectToTarget = () => {
+    this.props.history.push("/order");
+  }
+
   render() {
     const ingredients = Object.keys(this.props.ings).map(ing => {
       if (this.props.ings[ing] === 1) {
@@ -59,10 +65,10 @@ class OrderOverview extends Component {
           <H2>Gesamtpreis: {this.props.fullPrice.toFixed(2)}€</H2>
           {ingredients}
         </Col>
-        <Button>bestellen</Button>
+        <Button onClick={this.redirectToTarget}>bestellen</Button>
       </Row>
     );
   }
 }
 
-export default OrderOverview;
+export default withRouter(OrderOverview);
