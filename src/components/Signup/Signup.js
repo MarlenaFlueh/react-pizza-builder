@@ -5,7 +5,7 @@ import Input from "../UI/Input";
 import { HeadingMargin } from "../Heading/Heading";
 import Button from "../OrderOverview/Button";
 
-const LoginForm = styled.div`
+const AuthForm = styled.div`
     margin: 20px auto;
     width: 80%;
     text-align: center;
@@ -19,9 +19,42 @@ const LoginForm = styled.div`
     }
 `;
 
-class Login extends Component {
+class Signup extends Component {
     state = {
         orderForm: {
+            firstName: {
+                elementConf: {
+                    type: "text",
+                    placeholder: "First name"
+                },
+                value: "",
+                validation: {
+                    required: true,
+                },
+                touched: false
+            },
+            lastName: {
+                elementConf: {
+                    type: "text",
+                    placeholder: "Last name"
+                },
+                value: "",
+                validation: {
+                    required: true,
+                },
+                touched: false
+            },
+            address: {
+                elementConf: {
+                    type: "text",
+                    placeholder: "Your address"
+                },
+                value: "",
+                validation: {
+                    required: true,
+                },
+                touched: false
+            },
             email: {
                 elementConf: {
                     type: "email",
@@ -86,17 +119,17 @@ class Login extends Component {
         )
 
         return (
-            <LoginForm>
+            <AuthForm>
                 <HeadingMargin>
                     Fill in your data.
                 </HeadingMargin>
                 {form}
                 <Button onClick={this.props.clicked}>
-                    Log in
+                    Sign up
             </Button>
-            </LoginForm>
+            </AuthForm>
         )
     }
 }
 
-export default Login;
+export default Signup;

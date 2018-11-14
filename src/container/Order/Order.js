@@ -5,8 +5,8 @@ import { connect } from "react-redux";
 import * as actions from "../../actions/";
 import * as Grid from "../Pizza/PizzaGrid";
 import PizzaBuilder from "../../components/PizzaBuilder/PizzaBuilder";
-import AuthForm from "../../components/Auth/Auth";
-import LoginForm from "../../components/Login/Login";
+import LoginForm from "../../components/Auth/Auth";
+import SignupForm from "../../components/Signup/Signup";
 import OrderOverview from "../../components/OrderOverview/OrderOverview";
 
 export const Container = styled.div`
@@ -40,7 +40,7 @@ class Order extends Component {
   }
 
   redirectToTarget = () => {
-    this.props.history.push("/summary");
+    //this.props.history.push("/summary");
   }
 
   changeLoginHandler = () => {
@@ -56,7 +56,7 @@ class Order extends Component {
     return (
       <Container>
         <Grid.ImageGrid>
-          {this.state.showLogin ? <LoginForm clicked={this.redirectToTarget} /> : <AuthForm clicked={this.redirectToTarget} />}
+          {this.state.showLogin ? <LoginForm clicked={this.redirectToTarget} /> : <SignupForm clicked={this.redirectToTarget} />}
           {this.state.showLogin ? authQuestion : loginQuestion}
         </Grid.ImageGrid>
         <Grid.PizzaBuilderGrid>

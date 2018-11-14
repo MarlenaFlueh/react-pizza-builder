@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 
 import * as actions from "../../actions/";
 import * as Grid from "../Pizza/PizzaGrid";
+import { HeadingMargin } from "../../components/Heading/Heading";
 
 export const Container = styled.div`
 display: grid;
@@ -43,18 +44,28 @@ class Summary extends Component {
 
     render() {
 
+        const ingredientsArray = [];
+
+        for (let key in this.props.ings) {
+            ingredientsArray.push({
+                name: key.charAt(0).toUpperCase() + key.slice(1),
+                num: this.props.ings[key]
+            });
+        }
+
+        console.log(ingredientsArray);
+
         return (
             <Container>
                 <Grid.ImageGrid>
                     <OrderForm>
-                        Bestelldetails
-                        <ul>
-                            <li>Tomato</li>
-                            <li>Mushash</li>
-                            <li>RedPepper</li>
-                            <li>GreenPepper</li>
-                            <li>Mozerella</li>
-                        </ul>
+                        <HeadingMargin>Bestelldetails</HeadingMargin>
+                        {ingredientsArray.map(item => item.num === 1 ? <p key={item.name}>{item.name}: {item.num}</p> : null)}
+                        <HeadingMargin>Liefern an:</HeadingMargin>
+                        <HeadingMargin>Gesamtpreis: </HeadingMargin>{this.props.fullPrice.toFixed(2)}€
+                        <HeadingMargin>Von:</HeadingMargin>
+                        <p>PizzaHype GmbH</p>
+                        <p>+49245789275</p>
                     </OrderForm>
                 </Grid.ImageGrid>
                 <Grid.PizzaBuilderGrid>

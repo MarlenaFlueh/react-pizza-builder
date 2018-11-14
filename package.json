@@ -28,5 +28,6 @@
   "bugs": {
     "url": "https://github.com/MarlenaFlueh/react-pizza-builder/issues"
   },
-  "homepage": "https://github.com/MarlenaFlueh/react-pizza-builder#readme"
+  "homepage": "https://github.com/MarlenaFlueh/react-pizza-builder#readme",
+  "devDependencies": {}
 }

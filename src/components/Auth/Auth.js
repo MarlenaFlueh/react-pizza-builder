@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import { connect } from "react-redux";
 
 import Input from "../UI/Input";
 import { HeadingMargin } from "../Heading/Heading";
 import Button from "../OrderOverview/Button";
+import * as actions from "../../actions/index";
 
-const AuthForm = styled.div`
+const Container = styled.div`
     margin: 20px auto;
     width: 80%;
     text-align: center;
@@ -22,39 +24,6 @@ const AuthForm = styled.div`
 class Auth extends Component {
     state = {
         orderForm: {
-            firstName: {
-                elementConf: {
-                    type: "text",
-                    placeholder: "First name"
-                },
-                value: "",
-                validation: {
-                    required: true,
-                },
-                touched: false
-            },
-            lastName: {
-                elementConf: {
-                    type: "text",
-                    placeholder: "Last name"
-                },
-                value: "",
-                validation: {
-                    required: true,
-                },
-                touched: false
-            },
-            address: {
-                elementConf: {
-                    type: "text",
-                    placeholder: "Your address"
-                },
-                value: "",
-                validation: {
-                    required: true,
-                },
-                touched: false
-            },
             email: {
                 elementConf: {
                     type: "email",
@@ -82,6 +51,7 @@ class Auth extends Component {
         formIsValid: false
     }
 
+
     inputChangeHandler = (event, controlName) => {
         const updatedControls = {
             ...this.state.orderForm,
@@ -91,6 +61,11 @@ class Auth extends Component {
             }
         };
         this.setState({ orderForm: updatedControls });
+    }
+
+    submitHandler = event => {
+        event.preventDefault();
+        this.props.onAuth(this.state.orderForm.email.value, this.state.orderForm.password.value);
     }
 
     render() {
@@ -112,24 +87,24 @@ class Auth extends Component {
             />
         );
 
-        let form = (
-            <form>
-                {input}
-            </form>
-        )
-
         return (
-            <AuthForm>
+            <Container >
                 <HeadingMargin>
-                    Fill in your data.
+                    Fill in your login data.
                 </HeadingMargin>
-                {form}
-                <Button onClick={this.props.clicked}>
-                    Sign up
-            </Button>
-            </AuthForm>
+                <form onSubmit={this.submitHandler}>
+                    {input}
+                    <Button type="submit" onClick={this.props.clicked}>Log in</Button>
+                </form>
+            </Container>
         )
     }
 }
 
-export default Auth;
+const mapDispatchToProps = dispatch => {
+    return {
+        onAuth: (email, password) => dispatch(actions.auth(email, password))
+    }
+}
+
+export default connect(null, mapDispatchToProps)(Auth);
