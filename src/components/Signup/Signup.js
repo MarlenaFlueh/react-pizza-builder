@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import { connect } from "react-redux";
 
+import * as actions from "../../actions/";
 import Input from "../UI/Input";
 import { HeadingMargin } from "../Heading/Heading";
 import Button from "../OrderOverview/Button";
@@ -20,116 +22,62 @@ const AuthForm = styled.div`
 `;
 
 class Signup extends Component {
-    state = {
-        orderForm: {
-            firstName: {
-                elementConf: {
-                    type: "text",
-                    placeholder: "First name"
-                },
-                value: "",
-                validation: {
-                    required: true,
-                },
-                touched: false
-            },
-            lastName: {
-                elementConf: {
-                    type: "text",
-                    placeholder: "Last name"
-                },
-                value: "",
-                validation: {
-                    required: true,
-                },
-                touched: false
-            },
-            address: {
-                elementConf: {
-                    type: "text",
-                    placeholder: "Your address"
-                },
-                value: "",
-                validation: {
-                    required: true,
-                },
-                touched: false
-            },
-            email: {
-                elementConf: {
-                    type: "email",
-                    placeholder: "Your email"
-                },
-                value: "",
-                validation: {
-                    required: true,
-                },
-                touched: false
-            },
-            password: {
-                elementConf: {
-                    type: "password",
-                    placeholder: "Choose a password"
-                },
-                value: "",
-                validation: {
-                    required: true,
-                },
-                touched: false
-            }
-
-        },
-        formIsValid: false
-    }
-
-    inputChangeHandler = (event, controlName) => {
-        const updatedControls = {
-            ...this.state.orderForm,
-            [controlName]: {
-                ...this.state.orderForm[controlName],
-                value: event.target.value
-            }
-        };
-        this.setState({ orderForm: updatedControls });
+    inputChangeHandler = (value, controlName) => {
+        this.props.addContactData(value, controlName);
     }
 
     render() {
-        const formArray = [];
 
-        for (let key in this.state.orderForm) {
+        // bug in contactDataReducer, after input "value" deletes all attributes
+        const formArray = [];
+        for (let key in this.props.contactData) {
+            console.log(this.props.contactData[key].elementConf.type)
             formArray.push({
                 id: key,
-                config: this.state.orderForm[key]
+                value: this.props.contactData[key].value,
+                //type: this.props.contactData[key].elementConf.type,
+                //placeholder: this.props.contactData[key].elementConf.placeholder
             });
         }
+        console.log(formArray)
 
-        const input = formArray.map(item =>
-            <Input
+        const input = formArray.map(item => {
+            console.log(item.type)
+            return <Input
                 key={item.id}
-                elementConf={item.config.elementConf}
-                changed={event => this.inputChangeHandler(event, item.id)}
-                value={item.config.value}
+                type={item.type}
+                placeholder={item.placeholder}
+                changed={event => this.inputChangeHandler(event.target.value, item.id)}
+                value={item.value}
             />
+        }
         );
-
-        let form = (
-            <form>
-                {input}
-            </form>
-        )
 
         return (
             <AuthForm>
                 <HeadingMargin>
                     Fill in your data.
                 </HeadingMargin>
-                {form}
-                <Button onClick={this.props.clicked}>
-                    Sign up
-            </Button>
+                <form onSubmit={this.submitHandler}>
+                    {input}
+                    <Button type="submit" onClick={this.props.clicked}>
+                        Sign up
+                    </Button>
+                </form>
             </AuthForm>
         )
     }
 }
 
-export default Signup;
+const mapStateToProps = state => {
+    return {
+        ings: state.ingredients.ings,
+        fullPrice: state.ingredients.fullPrice,
+        contactData: state.contactData.orderForm
+    };
+};
+
+export default connect(
+    mapStateToProps,
+    actions
+)(Signup);

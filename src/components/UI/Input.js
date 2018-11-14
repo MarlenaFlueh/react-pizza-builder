@@ -31,7 +31,9 @@ class Input extends Component {
             <InputField
                 onChange={this.props.changed}
                 value={this.props.value}
-                {...this.props.elementConf} />
+                type={this.props.type}
+                placeholder={this.props.placeholder}
+            />
         )
     }
 }

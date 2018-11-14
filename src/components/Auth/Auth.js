@@ -1,11 +1,9 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { connect } from "react-redux";
 
 import Input from "../UI/Input";
 import { HeadingMargin } from "../Heading/Heading";
 import Button from "../OrderOverview/Button";
-import * as actions from "../../actions/index";
 
 const Container = styled.div`
     margin: 20px auto;
@@ -65,7 +63,6 @@ class Auth extends Component {
 
     submitHandler = event => {
         event.preventDefault();
-        this.props.onAuth(this.state.orderForm.email.value, this.state.orderForm.password.value);
     }
 
     render() {
@@ -74,21 +71,24 @@ class Auth extends Component {
         for (let key in this.state.orderForm) {
             formArray.push({
                 id: key,
-                config: this.state.orderForm[key]
+                config: this.state.orderForm[key],
+                type: this.state.orderForm[key].elementConf.type,
+                placeholder: this.state.orderForm[key].elementConf.placeholder
             });
         }
 
         const input = formArray.map(item =>
             <Input
                 key={item.id}
-                elementConf={item.config.elementConf}
+                type={item.type}
+                placeholder={item.placeholder}
                 changed={event => this.inputChangeHandler(event, item.id)}
                 value={item.config.value}
             />
         );
 
         return (
-            <Container >
+            <Container>
                 <HeadingMargin>
                     Fill in your login data.
                 </HeadingMargin>
@@ -101,10 +101,4 @@ class Auth extends Component {
     }
 }
 
-const mapDispatchToProps = dispatch => {
-    return {
-        onAuth: (email, password) => dispatch(actions.auth(email, password))
-    }
-}
-
-export default connect(null, mapDispatchToProps)(Auth);
+export default Auth;

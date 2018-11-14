@@ -40,7 +40,7 @@ class Order extends Component {
   }
 
   redirectToTarget = () => {
-    //this.props.history.push("/summary");
+    this.props.history.push("/summary");
   }
 
   changeLoginHandler = () => {

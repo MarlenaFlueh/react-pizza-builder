@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 import * as actions from "../../actions/";
 import * as Grid from "../Pizza/PizzaGrid";
-import { HeadingMargin } from "../../components/Heading/Heading";
+import { HeadingMargin, H2Margin } from "../../components/Heading/Heading";
 
 export const Container = styled.div`
 display: grid;
@@ -43,6 +43,14 @@ class Summary extends Component {
     }
 
     render() {
+        const allowed = ["firstName", "lastName", "email", "address"]
+
+        const filteredContactData = Object.keys(this.props.contactData)
+            .filter(key => allowed.includes(key))
+            .reduce((obj, key) => {
+                obj[key] = this.props.contactData[key];
+                return obj;
+            }, {});
 
         const ingredientsArray = [];
 
@@ -53,17 +61,20 @@ class Summary extends Component {
             });
         }
 
-        console.log(ingredientsArray);
-
         return (
             <Container>
                 <Grid.ImageGrid>
                     <OrderForm>
                         <HeadingMargin>Bestelldetails</HeadingMargin>
-                        {ingredientsArray.map(item => item.num === 1 ? <p key={item.name}>{item.name}: {item.num}</p> : null)}
-                        <HeadingMargin>Liefern an:</HeadingMargin>
-                        <HeadingMargin>Gesamtpreis: </HeadingMargin>{this.props.fullPrice.toFixed(2)}€
-                        <HeadingMargin>Von:</HeadingMargin>
+                        <H2Margin>Liefern an:</H2Margin>
+                        <p>Vorname: {filteredContactData.firstName.value}</p>
+                        <p>Nachname: {filteredContactData.lastName.value}</p>
+                        <p>Adresse: {filteredContactData.address.value}</p>
+                        <p>E-Mail: {filteredContactData.email.value}</p>
+                        <H2Margin>Zutaten:</H2Margin>
+                        {ingredientsArray.map(item => item.num === 1 ? <p key={item.name}>{item.name}</p> : null)}
+                        <H2Margin>Gesamtpreis: </H2Margin>{this.props.fullPrice.toFixed(2)}€
+                        <H2Margin>Lieferung erfolgt dursummarych:</H2Margin>
                         <p>PizzaHype GmbH</p>
                         <p>+49245789275</p>
                     </OrderForm>
@@ -80,7 +91,8 @@ class Summary extends Component {
 const mapStateToProps = state => {
     return {
         ings: state.ingredients.ings,
-        fullPrice: state.ingredients.fullPrice
+        fullPrice: state.ingredients.fullPrice,
+        contactData: state.contactData.orderForm
     };
 };
 
