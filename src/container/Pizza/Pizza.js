@@ -6,13 +6,12 @@ import * as actions from "../../actions/";
 import * as Grid from "./PizzaGrid";
 import PizzaBuilder from "../../components/PizzaBuilder/PizzaBuilder";
 import Toolbar from "../../components/Toolbar/Toolbar";
-import Heading from "../../components/Heading/Heading";
 import OrderOverview from "../../components/OrderOverview/OrderOverview";
 
 export const Container = styled.div`
   display: grid;
   grid-template-columns: 30% 30% 10% 10% 20%;
-  grid-auto-rows: 10% 20% 40% 30%;
+  grid-auto-rows: 0% 0% 50% 40% 10%;
   background-color: #ffe487;
   position: absolute;
   width: 100%;
@@ -20,7 +19,7 @@ export const Container = styled.div`
   top: 0;
   left: 0;
   @media (min-width: 1050px) and (min-height: 700px) {
-    grid-template-columns: 20% 20% 10% 10% 40%;
+    grid-template-columns: 20% 25% 10% 10% 25% 10%;
     grid-auto-rows: 10% 20% 30% 40%;
   }
 `;
@@ -37,9 +36,6 @@ class Pizza extends Component {
   render() {
     return (
       <Container>
-        <Grid.BrandGrid>
-          <Heading />
-        </Grid.BrandGrid>
         <Grid.ImageGrid />
         <Grid.ToolbarGrid>
           <Toolbar clicked={this.selectIngHandler} ings={this.props.ings} />
@@ -49,6 +45,7 @@ class Pizza extends Component {
         </Grid.PizzaBuilderGrid>
         <Grid.OrderGrid>
           <OrderOverview
+            showBtn
             ings={this.props.ings}
             fullPrice={this.props.fullPrice}
           />

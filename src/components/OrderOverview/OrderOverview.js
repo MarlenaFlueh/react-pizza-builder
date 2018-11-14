@@ -30,7 +30,6 @@ const Row = styled.div`
 const Col = styled.div`
   display: flex;
   flex-flow: column;
-  margin: auto;
   height: 100%;
 `;
 
@@ -65,7 +64,7 @@ class OrderOverview extends Component {
           <H2>Gesamtpreis: {this.props.fullPrice.toFixed(2)}€</H2>
           {ingredients}
         </Col>
-        <Button onClick={this.redirectToTarget}>bestellen</Button>
+        {this.props.showBtn ? <Button onClick={this.redirectToTarget}>bestellen</Button> : null}
       </Row>
     );
   }

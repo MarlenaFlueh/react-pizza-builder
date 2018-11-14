@@ -1,16 +1,5 @@
 import styled from "styled-components";
 
-export const BrandGrid = styled.div`
-  grid-column: 1/6;
-  grid-row: 1/2;
-  z-index: 1;
-
-  @media (min-width: 1050px) and (min-height: 700px) {
-    grid-column: 3/6;
-    grid-row: 1/4;
-  }
-`;
-
 export const ImageGrid = styled.div`
   grid-column: 1/6;
   grid-row: 2;
