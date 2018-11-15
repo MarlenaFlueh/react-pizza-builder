@@ -25,7 +25,7 @@ export const pepperoni = [
   { col: 3, row: 4 }
 ];
 
-export const mozerella = [
+export const mozzarella = [
   { col: 2, row: 1 },
   { col: 4, row: 1 },
   { col: 1, row: 2 },

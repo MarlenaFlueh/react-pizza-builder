@@ -17,7 +17,7 @@ export const Olive = styled.div`
   }
 `;
 
-export const Mozerella = styled.div`
+export const Mozzarella = styled.div`
   width: 25px;
   height: 35px;
   top: 10px;

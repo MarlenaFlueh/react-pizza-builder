@@ -1,5 +1,5 @@
 export const prices = {
-  mozerella: 1.2,
+  mozzarella: 1.2,
   olive: 1.1,
   mushroom: 1.3,
   pepperoni: 1.2,

@@ -3,7 +3,7 @@ import * as utils from "../utils";
 
 const initialState = {
   ings: {
-    mozerella: 1,
+    mozzarella: 1,
     olive: 0,
     mushroom: 0,
     pepperoni: 1,
