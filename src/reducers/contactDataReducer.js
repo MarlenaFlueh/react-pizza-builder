@@ -68,9 +68,10 @@ const contactDataReducer = (state = initialState, action) => {
                 ...state,
                 orderForm: {
                     ...state.orderForm,
-                    [action.payload]: {
-                        ...state.orderForm[action.payload],
-                        value: [action.secondPayload]
+                    [action.payload.inputField]: {
+                        ...state.orderForm[action.payload.inputField],
+                        ...state.orderForm[action.payload.inputField].elementConf,
+                        value: [action.payload.value]
                     }
                 }
             }

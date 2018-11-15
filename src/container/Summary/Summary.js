@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import * as actions from "../../actions/";
 import * as Grid from "../Pizza/PizzaGrid";
 import { HeadingMargin, H2Margin } from "../../components/Heading/Heading";
+import Button from "../../components/OrderOverview/Button";
 
 export const Container = styled.div`
 display: grid;
@@ -74,9 +75,10 @@ class Summary extends Component {
                         <H2Margin>Zutaten:</H2Margin>
                         {ingredientsArray.map(item => item.num === 1 ? <p key={item.name}>{item.name}</p> : null)}
                         <H2Margin>Gesamtpreis: </H2Margin>{this.props.fullPrice.toFixed(2)}€
-                        <H2Margin>Lieferung erfolgt dursummarych:</H2Margin>
+                        <H2Margin>Lieferung erfolgt durch:</H2Margin>
                         <p>PizzaHype GmbH</p>
-                        <p>+49245789275</p>
+                        <p>+49 245789275</p>
+                        <Button>jetzt bestellen</Button>
                     </OrderForm>
                 </Grid.ImageGrid>
                 <Grid.PizzaBuilderGrid>

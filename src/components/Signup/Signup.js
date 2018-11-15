@@ -28,21 +28,17 @@ class Signup extends Component {
 
     render() {
 
-        // bug in contactDataReducer, after input "value" deletes all attributes
         const formArray = [];
         for (let key in this.props.contactData) {
-            console.log(this.props.contactData[key].elementConf.type)
             formArray.push({
                 id: key,
                 value: this.props.contactData[key].value,
-                //type: this.props.contactData[key].elementConf.type,
-                //placeholder: this.props.contactData[key].elementConf.placeholder
+                type: this.props.contactData[key].elementConf.type,
+                placeholder: this.props.contactData[key].elementConf.placeholder
             });
         }
-        console.log(formArray)
 
         const input = formArray.map(item => {
-            console.log(item.type)
             return <Input
                 key={item.id}
                 type={item.type}
