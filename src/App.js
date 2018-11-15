@@ -4,12 +4,14 @@ import { Route, Switch } from "react-router-dom";
 import Pizza from "./container/Pizza/Pizza";
 import Order from "./container/Order/Order";
 import Summary from "./container/Summary/Summary";
+import LandingPage from "./container/LandingPage/LandingPage";
 
 const App = () => (
   <Switch>
     <Route path="/order" component={Order} />
     <Route path="/summary" component={Summary} />
-    <Route path="/" component={Pizza} />
+    <Route path="/pizza" component={Pizza} />
+    <Route path="/" component={LandingPage} />
   </Switch>
 );
 

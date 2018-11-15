@@ -39,7 +39,7 @@ const H2 = styled.h2`
 
 class OrderOverview extends Component {
 
-  redirectToTarget = async () => {
+  redirectToTarget = () => {
     this.props.history.push("/order");
   }
 
