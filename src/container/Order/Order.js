@@ -8,6 +8,7 @@ import PizzaBuilder from "../../components/PizzaBuilder/PizzaBuilder";
 import LoginForm from "../../components/Auth/Auth";
 import SignupForm from "../../components/Signup/Signup";
 import OrderOverview from "../../components/OrderOverview/OrderOverview";
+import { getUser } from "../../components/Api/Api";
 
 export const Container = styled.div`
 display: grid;
@@ -39,6 +40,12 @@ class Order extends Component {
     showLogin: false
   }
 
+  authAndRedirect = async (email, password) => {
+    console.log("test")
+    //console.log(email, password)
+    const res = await getUser("marlenaflueh@gmail.com", "d9b5f58f0b38198293971865a14074f59eba3e82595becbe86ae51f1d9f1f65e")
+  }
+
   redirectToTarget = () => {
     this.props.history.push("/summary");
   }
@@ -56,7 +63,7 @@ class Order extends Component {
     return (
       <Container>
         <Grid.ImageGrid>
-          {this.state.showLogin ? <LoginForm clicked={this.redirectToTarget} /> : <SignupForm clicked={this.redirectToTarget} />}
+          {this.state.showLogin ? <LoginForm clicked={this.authAndRedirect} /> : <SignupForm clicked={this.redirectToTarget} />}
           {this.state.showLogin ? authQuestion : loginQuestion}
         </Grid.ImageGrid>
         <Grid.PizzaBuilderGrid>
