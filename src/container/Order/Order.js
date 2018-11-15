@@ -40,10 +40,11 @@ class Order extends Component {
     showLogin: false
   }
 
+  // does not work
   authAndRedirect = async (email, password) => {
-    console.log("test")
     //console.log(email, password)
     const res = await getUser("marlenaflueh@gmail.com", "d9b5f58f0b38198293971865a14074f59eba3e82595becbe86ae51f1d9f1f65e")
+    console.log(res)
   }
 
   redirectToTarget = () => {
