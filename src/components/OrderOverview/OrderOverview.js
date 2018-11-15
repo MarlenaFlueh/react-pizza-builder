@@ -4,7 +4,6 @@ import { withRouter } from "react-router-dom";
 
 import * as utils from "../../utils";
 import Button from "./Button";
-import { getIngredients } from "../Api/Api";
 
 const Ing = styled.label`
   display: block;
@@ -39,10 +38,6 @@ const H2 = styled.h2`
 `;
 
 class OrderOverview extends Component {
-  async componentDidMount() {
-    const res = await getIngredients();
-    console.log(res)
-  }
 
   redirectToTarget = async () => {
     this.props.history.push("/order");

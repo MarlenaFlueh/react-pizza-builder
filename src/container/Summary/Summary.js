@@ -6,6 +6,7 @@ import * as actions from "../../actions/";
 import * as Grid from "../Pizza/PizzaGrid";
 import { HeadingMargin, H2Margin } from "../../components/Heading/Heading";
 import Button from "../../components/OrderOverview/Button";
+// import { postOrder } from "../../components/Api/Api";
 
 export const Container = styled.div`
 display: grid;
@@ -38,6 +39,33 @@ const OrderForm = styled.div`
 `;
 
 class Summary extends Component {
+
+    postOrderData = async () => {
+
+        const customer = Object.keys(this.props.contactData)
+            .reduce((obj, key) => {
+                obj[key] = this.props.contactData[key].value;
+                return obj;
+            }, {});
+
+        const ingredient = Object.keys(this.props.ings)
+            .filter(key => this.props.ings[key] === 1)
+            .reduce((obj, key) => {
+                obj[key] = this.props.ings[key];
+                return obj;
+            }, {});
+
+        const order = {
+            customer,
+            ingredient
+        }
+
+        // not working yet, needs an api endpoint
+        // const postResponse = await postOrder(order);
+        // console.log(postResponse)
+
+        console.log(order)
+    }
 
     redirectToTarget = () => {
         this.props.history.push("/summary");
@@ -78,7 +106,7 @@ class Summary extends Component {
                         <H2Margin>Lieferung erfolgt durch:</H2Margin>
                         <p>PizzaHype GmbH</p>
                         <p>+49 245789275</p>
-                        <Button>jetzt bestellen</Button>
+                        <Button onClick={this.postOrderData}>jetzt bestellen</Button>
                     </OrderForm>
                 </Grid.ImageGrid>
                 <Grid.PizzaBuilderGrid>
