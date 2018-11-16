@@ -8,7 +8,7 @@ import PizzaBuilder from "../../components/PizzaBuilder/PizzaBuilder";
 import LoginForm from "../../components/Auth/Auth";
 import SignupForm from "../../components/Signup/Signup";
 import OrderOverview from "../../components/OrderOverview/OrderOverview";
-import { postUser } from "../../components/Api/Api";
+import { postUser, getUser } from "../../components/Api/Api";
 
 export const Container = styled.div`
 display: grid;
@@ -57,6 +57,16 @@ class Order extends Component {
     this.setState(prevState => ({ showLogin: !prevState.showLogin }));
   }
 
+  authAndRedirect = async () => {
+    // test: "marlenaflueh@gmail.com", "Test123"
+    const res = await getUser(this.props.authData.email.value, this.props.authData.password.value)
+
+    if (res.email === this.props.authData.email.value) {
+      console.log(res)
+      this.props.history.push("/summary");
+    }
+  }
+
   render() {
 
     const loginQuestion = <Question>Already have an account?<ChangeLink onClick={this.changeLoginHandler}> Log in</ChangeLink></Question>
@@ -87,7 +97,8 @@ const mapStateToProps = state => {
   return {
     ings: state.ingredients.ings,
     fullPrice: state.ingredients.fullPrice,
-    contactData: state.contactData.orderForm
+    contactData: state.contactData.orderForm,
+    authData: state.authData.orderForm
   };
 };
 

@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import { connect } from "react-redux";
 
+import * as actions from "../../actions/";
 import Input from "../UI/Input";
 import { HeadingMargin } from "../Heading/Heading";
 import Button from "../OrderOverview/Button";
-import { getUser } from "../../components/Api/Api";
 
 const Container = styled.div`
     margin: 20px auto;
@@ -21,54 +22,9 @@ const Container = styled.div`
 `;
 
 class Auth extends Component {
-    state = {
-        orderForm: {
-            email: {
-                elementConf: {
-                    type: "email",
-                    placeholder: "Your email"
-                },
-                value: "",
-                validation: {
-                    required: true,
-                },
-                touched: false
-            },
-            password: {
-                elementConf: {
-                    type: "password",
-                    placeholder: "Choose a password"
-                },
-                value: "",
-                validation: {
-                    required: true,
-                },
-                touched: false
-            }
 
-        },
-        formIsValid: false
-    }
-
-
-    inputChangeHandler = (event, controlName) => {
-        const updatedControls = {
-            ...this.state.orderForm,
-            [controlName]: {
-                ...this.state.orderForm[controlName],
-                value: event.target.value
-            }
-        };
-        this.setState({ orderForm: updatedControls });
-    }
-
-    authAndRedirect = async (email, password) => {
-        // test: "marlenaflueh@gmail.com", "Test123"
-        const res = await getUser(email, password)
-
-        if (res.email === email) {
-            console.log(res)
-        }
+    inputChangeHandler = (value, controlName) => {
+        this.props.addAuthData(value, controlName);
     }
 
     submitHandler = event => {
@@ -78,12 +34,12 @@ class Auth extends Component {
     render() {
         const formArray = [];
 
-        for (let key in this.state.orderForm) {
+        for (let key in this.props.authData) {
             formArray.push({
                 id: key,
-                config: this.state.orderForm[key],
-                type: this.state.orderForm[key].elementConf.type,
-                placeholder: this.state.orderForm[key].elementConf.placeholder
+                config: this.props.authData[key],
+                type: this.props.authData[key].elementConf.type,
+                placeholder: this.props.authData[key].elementConf.placeholder
             });
         }
 
@@ -92,7 +48,7 @@ class Auth extends Component {
                 key={item.id}
                 type={item.type}
                 placeholder={item.placeholder}
-                changed={event => this.inputChangeHandler(event, item.id)}
+                changed={event => this.inputChangeHandler(event.target.value, item.id)}
                 value={item.config.value}
             />
         );
@@ -104,11 +60,23 @@ class Auth extends Component {
                 </HeadingMargin>
                 <form onSubmit={this.submitHandler}>
                     {input}
-                    <Button type="submit" onClick={() => this.authAndRedirect(this.state.orderForm.email.value, this.state.orderForm.password.value)}>Log in</Button>
+                    <Button type="submit" onClick={this.props.clicked}>Log in</Button>
                 </form>
             </Container>
         )
     }
 }
 
-export default Auth;
+const mapStateToProps = state => {
+    return {
+        ings: state.ingredients.ings,
+        fullPrice: state.ingredients.fullPrice,
+        contactData: state.contactData.orderForm,
+        authData: state.authData.orderForm
+    };
+};
+
+export default connect(
+    mapStateToProps,
+    actions
+)(Auth);
