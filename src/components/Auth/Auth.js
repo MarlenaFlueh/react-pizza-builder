@@ -67,7 +67,8 @@ class Auth extends Component {
         const res = await getUser(email, password)
 
         if (res.email === email) {
-            this.props.history.push("/summary");
+            //this.props.history.push("/summary");
+            console.log(res)
         }
     }
 

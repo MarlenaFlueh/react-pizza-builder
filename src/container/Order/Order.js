@@ -66,7 +66,7 @@ class Order extends Component {
     return (
       <Container>
         <Grid.ImageGrid>
-          {this.state.showLogin ? <LoginForm clicked={this.authAndRedirect} /> : <SignupForm />}
+          {this.state.showLogin ? <LoginForm clicked={this.authAndRedirect} /> : <SignupForm clicked={this.postSignupData} />}
           {this.state.showLogin ? authQuestion : loginQuestion}
         </Grid.ImageGrid>
         <Grid.PizzaBuilderGrid>
