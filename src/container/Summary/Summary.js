@@ -40,6 +40,10 @@ const OrderForm = styled.div`
 
 class Summary extends Component {
 
+    componentDidMount() {
+        console.log(this.props.contactData)
+    }
+
     postOrderData = async () => {
 
         const customer = Object.keys(this.props.contactData)

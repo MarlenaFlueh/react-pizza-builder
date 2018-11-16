@@ -40,9 +40,15 @@ class Order extends Component {
     showLogin: false
   }
 
-  postSignupData = async values => {
+  postSignupData = async () => {
 
-    await postUser(values.firstName, values.lastName, values.address, values.password, values.email);
+    const filteredContactData = Object.keys(this.props.contactData)
+      .reduce((obj, key) => {
+        obj[key] = this.props.contactData[key];
+        return obj;
+      }, {});
+
+    await postUser(filteredContactData.firstName.value, filteredContactData.lastName.value, filteredContactData.address.value, filteredContactData.password.value, filteredContactData.email.value);
 
     this.props.history.push("/summary");
   }
@@ -70,7 +76,7 @@ class Order extends Component {
     return (
       <Container>
         <Grid.ImageGrid>
-          {this.state.showLogin ? <LoginForm clicked={this.authAndRedirect} /> : <SignupForm onSubmit={this.postSignupData} />}
+          {this.state.showLogin ? <LoginForm clicked={this.authAndRedirect} /> : <SignupForm clicked={this.postSignupData} />}
           {this.state.showLogin ? authQuestion : loginQuestion}
         </Grid.ImageGrid>
         <Grid.PizzaBuilderGrid>
