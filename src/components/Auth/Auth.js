@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Input from "../UI/Input";
 import { HeadingMargin } from "../Heading/Heading";
 import Button from "../OrderOverview/Button";
+import { getUser } from "../../components/Api/Api";
 
 const Container = styled.div`
     margin: 20px auto;
@@ -61,6 +62,15 @@ class Auth extends Component {
         this.setState({ orderForm: updatedControls });
     }
 
+    authAndRedirect = async (email, password) => {
+        // test: "marlenaflueh@gmail.com", "Test123"
+        const res = await getUser(email, password)
+
+        if (res.email === email) {
+            this.props.history.push("/summary");
+        }
+    }
+
     submitHandler = event => {
         event.preventDefault();
     }
@@ -94,7 +104,7 @@ class Auth extends Component {
                 </HeadingMargin>
                 <form onSubmit={this.submitHandler}>
                     {input}
-                    <Button type="submit" onClick={this.props.clicked}>Log in</Button>
+                    <Button type="submit" onClick={() => this.authAndRedirect(this.state.orderForm.email.value, this.state.orderForm.password.value)}>Log in</Button>
                 </form>
             </Container>
         )

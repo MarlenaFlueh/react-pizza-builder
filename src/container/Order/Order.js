@@ -8,7 +8,7 @@ import PizzaBuilder from "../../components/PizzaBuilder/PizzaBuilder";
 import LoginForm from "../../components/Auth/Auth";
 import SignupForm from "../../components/Signup/Signup";
 import OrderOverview from "../../components/OrderOverview/OrderOverview";
-import { getUser } from "../../components/Api/Api";
+import { postUser } from "../../components/Api/Api";
 
 export const Container = styled.div`
 display: grid;
@@ -40,14 +40,16 @@ class Order extends Component {
     showLogin: false
   }
 
-  // does not work
-  authAndRedirect = async (email, password) => {
-    //console.log(email, password)
-    const res = await getUser("marlenaflueh@gmail.com", "d9b5f58f0b38198293971865a14074f59eba3e82595becbe86ae51f1d9f1f65e")
-    console.log(res)
-  }
+  postSignupData = async () => {
 
-  redirectToTarget = () => {
+    const filteredContactData = Object.keys(this.props.contactData)
+      .reduce((obj, key) => {
+        obj[key] = this.props.contactData[key];
+        return obj;
+      }, {});
+
+    await postUser(filteredContactData.firstName.value, filteredContactData.lastName.value, filteredContactData.address.value, filteredContactData.password.value, filteredContactData.email.value);
+
     this.props.history.push("/summary");
   }
 
@@ -64,7 +66,7 @@ class Order extends Component {
     return (
       <Container>
         <Grid.ImageGrid>
-          {this.state.showLogin ? <LoginForm clicked={this.authAndRedirect} /> : <SignupForm clicked={this.redirectToTarget} />}
+          {this.state.showLogin ? <LoginForm clicked={this.authAndRedirect} /> : <SignupForm />}
           {this.state.showLogin ? authQuestion : loginQuestion}
         </Grid.ImageGrid>
         <Grid.PizzaBuilderGrid>
@@ -84,7 +86,8 @@ class Order extends Component {
 const mapStateToProps = state => {
   return {
     ings: state.ingredients.ings,
-    fullPrice: state.ingredients.fullPrice
+    fullPrice: state.ingredients.fullPrice,
+    contactData: state.contactData.orderForm
   };
 };
 

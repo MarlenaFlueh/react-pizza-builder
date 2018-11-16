@@ -7,7 +7,6 @@ import * as Grid from "./PizzaGrid";
 import PizzaBuilder from "../../components/PizzaBuilder/PizzaBuilder";
 import Toolbar from "../../components/Toolbar/Toolbar";
 import OrderOverview from "../../components/OrderOverview/OrderOverview";
-import { getIngredients } from "../../components/Api/Api";
 
 export const Container = styled.div`
   display: grid;
@@ -26,12 +25,6 @@ export const Container = styled.div`
 `;
 
 class Pizza extends Component {
-
-  // just for testing api connection
-  async componentDidMount() {
-    const res = await getIngredients();
-    console.log(res)
-  }
 
   selectIngHandler = name => {
     if (this.props.ings[name] === 0) {
