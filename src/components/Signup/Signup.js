@@ -1,9 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
 import styled from "styled-components";
-import { connect } from "react-redux";
+import { Field, reduxForm } from 'redux-form'
 
-import * as actions from "../../actions/";
-import Input from "../UI/Input";
 import { HeadingMargin } from "../Heading/Heading";
 import Button from "../OrderOverview/Button";
 
@@ -21,59 +19,57 @@ const AuthForm = styled.div`
     }
 `;
 
-class Signup extends Component {
-    inputChangeHandler = (value, controlName) => {
-        this.props.addContactData(value, controlName);
+const InputField = styled(Field)`
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+
+    font-weight: bold;
+    display: block;
+    margin-bottom: 8px;
+
+    outline: none;
+    border: 1px solid #ccc;
+    background-color: white;
+    font: inherit;
+    padding: 6px 10px;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+
+    &:focus {
+        outline: none;
+        background-color: #ccc;
     }
+`;
 
-    render() {
+//NEW
 
-        const formArray = [];
-        for (let key in this.props.contactData) {
-            formArray.push({
-                id: key,
-                value: this.props.contactData[key].value,
-                type: this.props.contactData[key].elementConf.type,
-                placeholder: this.props.contactData[key].elementConf.placeholder
-            });
-        }
-
-        const input = formArray.map(item => {
-            return <Input
-                key={item.id}
-                type={item.type}
-                placeholder={item.placeholder}
-                changed={event => this.inputChangeHandler(event.target.value, item.id)}
-                value={item.value}
-            />
-        }
-        );
-
-        return (
-            <AuthForm>
-                <HeadingMargin>
-                    Fill in your data.
-                </HeadingMargin>
-                <form onSubmit={this.submitHandler}>
-                    {input}
-                    <Button type="submit" onClick={this.props.clicked}>
-                        Sign up
+let SignupForm = props => {
+    const { handleSubmit } = props
+    return (
+        < AuthForm >
+            <HeadingMargin>
+                Fill in your data.
+            </HeadingMargin>
+            <form onSubmit={handleSubmit}>
+                <InputField name="firstName" component="input" type="text" />
+                <InputField name="lastName" component="input" type="text" />
+                <InputField name="address" component="input" type="text" />
+                <InputField name="email" component="input" type="email" />
+                <InputField name="password" component="input" type="password" />
+                <Button type="submit">
+                    Sign up
                     </Button>
-                </form>
-            </AuthForm>
-        )
-    }
+            </form>
+        </AuthForm >
+    )
+
 }
 
-const mapStateToProps = state => {
-    return {
-        ings: state.ingredients.ings,
-        fullPrice: state.ingredients.fullPrice,
-        contactData: state.contactData.orderForm
-    };
-};
+SignupForm = reduxForm({
+    // a unique name for the form
+    form: 'contact'
+})(SignupForm)
 
-export default connect(
-    mapStateToProps,
-    actions
-)(Signup);
+export default SignupForm;
