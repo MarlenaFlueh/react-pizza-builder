@@ -62,7 +62,7 @@ class Auth extends Component {
                 </HeadingMargin>
                 <form onSubmit={this.submitHandler}>
                     {input}
-                    <Button type="submit" onClick={this.props.clicked}>Log in</Button>
+                    <Button disabled={!this.props.authData.formIsValid} type="submit" onClick={this.props.clicked}>Log in</Button>
                 </form>
             </Container>
         )

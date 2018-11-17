@@ -19,7 +19,7 @@ const initialState = {
         password: {
             elementConf: {
                 type: "password",
-                placeholder: "Choose a password"
+                placeholder: "Your password"
             },
             value: "",
             validation: {
@@ -30,26 +30,33 @@ const initialState = {
             touched: false
         }
     },
-    formIsValid: true
+    formIsValid: false
 }
 
 const authDataReducer = (state = initialState, action) => {
     switch (action.type) {
         case type.ADD_AUTHDATA: {
 
+            const updatedForm = {
+                ...state.orderForm,
+                [action.payload.inputField]: {
+                    ...state.orderForm[action.payload.inputField],
+                    ...state.orderForm[action.payload.inputField].elementConf,
+                    value: action.payload.value,
+                    valid: checkValidity(action.payload.value, state.orderForm[action.payload.inputField].validation),
+                    touched: true
+                }
+            }
+
+            let formIsValid = true;
+            for (let key in updatedForm) {
+                formIsValid = updatedForm[key].valid && formIsValid;
+            }
+
             return {
                 ...state,
-                orderForm: {
-                    ...state.orderForm,
-                    [action.payload.inputField]: {
-                        ...state.orderForm[action.payload.inputField],
-                        ...state.orderForm[action.payload.inputField].elementConf,
-                        value: action.payload.value,
-                        valid: checkValidity(action.payload.value, state.orderForm[action.payload.inputField].validation),
-                        touched: true
-                    }
-                },
-                formIsValid: checkValidity(action.payload.value, state.orderForm[action.payload.inputField].validation)
+                orderForm: updatedForm,
+                formIsValid
             }
         }
         default:

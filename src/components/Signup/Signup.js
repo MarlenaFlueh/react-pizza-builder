@@ -29,12 +29,12 @@ class Signup extends Component {
     render() {
 
         const formArray = [];
-        for (let key in this.props.contactData) {
+        for (let key in this.props.contactData.orderForm) {
             formArray.push({
                 id: key,
-                value: this.props.contactData[key].value,
-                type: this.props.contactData[key].elementConf.type,
-                placeholder: this.props.contactData[key].elementConf.placeholder
+                value: this.props.contactData.orderForm[key].value,
+                type: this.props.contactData.orderForm[key].elementConf.type,
+                placeholder: this.props.contactData.orderForm[key].elementConf.placeholder
             });
         }
 
@@ -45,6 +45,8 @@ class Signup extends Component {
                 placeholder={item.placeholder}
                 changed={event => this.inputChangeHandler(event.target.value, item.id)}
                 value={item.value}
+                invalid={!this.props.contactData.orderForm[item.id].valid}
+                touched={this.props.contactData.orderForm[item.id].touched}
             />
         }
         );
@@ -56,7 +58,7 @@ class Signup extends Component {
                 </HeadingMargin>
                 <form onSubmit={this.submitHandler}>
                     {input}
-                    <Button type="submit" onClick={this.props.clicked}>
+                    <Button disabled={!this.props.contactData.formIsValid} type="submit" onClick={this.props.clicked}>
                         Sign up
                     </Button>
                 </form>
@@ -69,7 +71,7 @@ const mapStateToProps = state => {
     return {
         ings: state.ingredients.ings,
         fullPrice: state.ingredients.fullPrice,
-        contactData: state.contactData.orderForm
+        contactData: state.contactData
     };
 };
 

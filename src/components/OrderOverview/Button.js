@@ -2,11 +2,11 @@ import styled from "styled-components";
 
 const Button = styled.button`
   background-color: white;
-  border: 1.4px solid green;
   border-radius: 2px;
-  color: green;
   outline: none;
-  cursor: pointer;
+  cursor: ${props => props.disabled ? "not-allowed" : "pointer"};
+  color: ${props => props.disabled ? "grey" : "green"};
+  border: ${props => props.disabled ? "1.4px solid grey" : "1.4px solid green"};
   font: inherit;
   padding: 10px;
   margin: 10px;
@@ -14,11 +14,6 @@ const Button = styled.button`
 
   @media (min-width: 1000px) and (min-height: 700px) {
     margin: auto;
-  }
-
-  &:hover {
-    color: rgb(18, 190, 61);
-    cursor: pointer;
   }
 `;
 
