@@ -62,7 +62,17 @@ class Order extends Component {
     const res = await getUser(this.props.authData.email.value, this.props.authData.password.value)
 
     if (res.email === this.props.authData.email.value) {
-      console.log(res)
+      const allowed = ["firstName", "lastName", "email", "address", "password"]
+
+      const filteredContactData = Object.keys(res)
+        .filter(key => allowed.includes(key))
+        .reduce((obj, key) => {
+          obj[key] = res[key];
+          return obj;
+        }, {});
+
+      console.log(filteredContactData)
+      this.props.getContactData(filteredContactData);
       this.props.history.push("/summary");
     }
   }
