@@ -34,12 +34,12 @@ class Auth extends Component {
     render() {
         const formArray = [];
 
-        for (let key in this.props.authData) {
+        for (let key in this.props.authData.orderForm) {
             formArray.push({
                 id: key,
-                config: this.props.authData[key],
-                type: this.props.authData[key].elementConf.type,
-                placeholder: this.props.authData[key].elementConf.placeholder
+                config: this.props.authData.orderForm[key],
+                type: this.props.authData.orderForm[key].elementConf.type,
+                placeholder: this.props.authData.orderForm[key].elementConf.placeholder
             });
         }
 
@@ -50,6 +50,8 @@ class Auth extends Component {
                 placeholder={item.placeholder}
                 changed={event => this.inputChangeHandler(event.target.value, item.id)}
                 value={item.config.value}
+                invalid={!this.props.authData.orderForm[item.id].valid}
+                touched={this.props.authData.orderForm[item.id].touched}
             />
         );
 
@@ -72,7 +74,7 @@ const mapStateToProps = state => {
         ings: state.ingredients.ings,
         fullPrice: state.ingredients.fullPrice,
         contactData: state.contactData.orderForm,
-        authData: state.authData.orderForm
+        authData: state.authData
     };
 };
 

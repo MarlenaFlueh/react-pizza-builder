@@ -11,7 +11,7 @@ const InputField = styled.input`
     margin-bottom: 8px;
 
     outline: none;
-    border: 1px solid #ccc;
+    border: ${props => props.invalid && props.touched ? "1px solid red" : "1px solid #ccc"};
     background-color: white;
     font: inherit;
     padding: 6px 10px;
@@ -33,6 +33,8 @@ class Input extends Component {
                 value={this.props.value}
                 type={this.props.type}
                 placeholder={this.props.placeholder}
+                invalid={this.props.invalid}
+                touched={this.props.touched}
             />
         )
     }
