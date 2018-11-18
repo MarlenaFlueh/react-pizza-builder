@@ -9,3 +9,7 @@ export const getContactData = (dataObject) => ({
     type: types.GET_CONTACTDATA,
     payload: dataObject
 });
+
+export const contactDataFailed = () => ({
+    type: types.CONTACTDATA_FAILED
+});

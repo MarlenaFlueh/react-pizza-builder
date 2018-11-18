@@ -53,8 +53,8 @@ class Order extends Component {
         return obj;
       }, {});
 
-    await postUser(filteredContactData.firstName.value, filteredContactData.lastName.value, filteredContactData.address.value, filteredContactData.password.value, filteredContactData.email.value);
-
+    const res = await postUser(filteredContactData.firstName.value, filteredContactData.lastName.value, filteredContactData.address.value, filteredContactData.password.value, filteredContactData.email.value);
+    console.log(res)
     this.props.history.push("/summary");
   }
 
@@ -76,11 +76,12 @@ class Order extends Component {
           return obj;
         }, {});
 
-      console.log(filteredContactData)
       this.props.getContactData(filteredContactData);
       this.props.history.push("/summary");
     }
-    this.props.authFailed();
+
+    else if (res)
+      this.props.authFailed();
   }
 
   render() {
@@ -92,9 +93,10 @@ class Order extends Component {
     return (
       <Container>
         <Grid.ImageGrid>
-          {this.state.showLogin ? <LoginForm clicked={this.authAndRedirect} /> : <SignupForm clicked={this.postSignupData} />}
+          {this.state.showLogin ? <SignupForm clicked={this.postSignupData} /> : <LoginForm clicked={this.authAndRedirect} />}
           {this.props.authData.error ? <FailedMessage>Check your login data.</FailedMessage> : null}
-          {this.state.showLogin ? authQuestion : loginQuestion}
+          {this.props.contactData.error ? <FailedMessage>User already exists.</FailedMessage> : null}
+          {this.state.showLogin ? loginQuestion : authQuestion}
         </Grid.ImageGrid>
         <Grid.PizzaBuilderGrid>
           <PizzaBuilder ings={this.props.ings} />

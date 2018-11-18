@@ -66,7 +66,8 @@ const initialState = {
             touched: false
         }
     },
-    formIsValid: false
+    formIsValid: false,
+    error: false
 }
 
 const contactDataReducer = (state = initialState, action) => {
@@ -101,7 +102,7 @@ const contactDataReducer = (state = initialState, action) => {
             for (let key in action.payload) {
 
                 newForm[key] = {
-                    ...state.orderForm[key].elementConf,
+                    ...state.orderForm[key],
                     value: action.payload[key],
                     valid: true,
                     touched: true
@@ -111,6 +112,14 @@ const contactDataReducer = (state = initialState, action) => {
             return {
                 ...state,
                 orderForm: newForm
+            }
+        }
+        case types.CONTACTDATA_FAILED: {
+            return {
+                ...state,
+                ...state.orderForm,
+                ...state.formIsValid,
+                error: true
             }
         }
         default:

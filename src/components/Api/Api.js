@@ -29,7 +29,7 @@ export const postUser = async (firstName, lastName, address, password, email) =>
             'Content-Type': 'application/json'
         }
     }).then(res => res.json())
-        .then(response => console.log('Success:', JSON.stringify(response)))
+        .then(response => console.log(response.success))
         .catch(error => console.error('Error:', error));
 }
 
