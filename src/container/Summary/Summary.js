@@ -51,10 +51,7 @@ class Summary extends Component {
         const postResponse = await postOrder(orderObject);
         console.log(postResponse)
 
-    }
-
-    redirectToTarget = () => {
-        this.props.history.push("/summary");
+        this.props.history.push("/final");
     }
 
     render() {

@@ -30,7 +30,8 @@ const initialState = {
             touched: false
         }
     },
-    formIsValid: false
+    formIsValid: false,
+    error: false
 }
 
 const authDataReducer = (state = initialState, action) => {
@@ -56,7 +57,16 @@ const authDataReducer = (state = initialState, action) => {
             return {
                 ...state,
                 orderForm: updatedForm,
-                formIsValid
+                formIsValid,
+                error: false
+            }
+        }
+        case type.AUTH_FAILED: {
+            return {
+                ...state,
+                ...state.orderForm,
+                ...state.formIsValid,
+                error: true
             }
         }
         default:

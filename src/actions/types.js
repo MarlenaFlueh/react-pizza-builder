@@ -5,3 +5,4 @@ export const ADD_CONTACTDATA = "ADD_CONTACTDATA";
 export const GET_CONTACTDATA = "GET_CONTACTDATA";
 
 export const ADD_AUTHDATA = "ADD_AUTHDATA";
+export const AUTH_FAILED = "AUTH_FAILED";

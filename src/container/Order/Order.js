@@ -35,6 +35,11 @@ const Question = styled.p`
   text-align: center;
 `;
 
+const FailedMessage = styled.p`
+  text-align: center;
+  color: red;
+`;
+
 class Order extends Component {
   state = {
     showLogin: false
@@ -59,9 +64,9 @@ class Order extends Component {
 
   authAndRedirect = async () => {
     // test: "marlenaflueh@gmail.com", "Test123"
-    const res = await getUser(this.props.authData.email.value, this.props.authData.password.value)
+    const res = await getUser(this.props.authData.orderForm.email.value, this.props.authData.orderForm.password.value)
 
-    if (res.email === this.props.authData.email.value) {
+    if (res.email === this.props.authData.orderForm.email.value) {
       const allowed = ["firstName", "lastName", "email", "address", "password"]
 
       const filteredContactData = Object.keys(res)
@@ -75,6 +80,7 @@ class Order extends Component {
       this.props.getContactData(filteredContactData);
       this.props.history.push("/summary");
     }
+    this.props.authFailed();
   }
 
   render() {
@@ -87,6 +93,7 @@ class Order extends Component {
       <Container>
         <Grid.ImageGrid>
           {this.state.showLogin ? <LoginForm clicked={this.authAndRedirect} /> : <SignupForm clicked={this.postSignupData} />}
+          {this.props.authData.error ? <FailedMessage>Check your login data.</FailedMessage> : null}
           {this.state.showLogin ? authQuestion : loginQuestion}
         </Grid.ImageGrid>
         <Grid.PizzaBuilderGrid>
@@ -108,7 +115,7 @@ const mapStateToProps = state => {
     ings: state.ingredients.ings,
     fullPrice: state.ingredients.fullPrice,
     contactData: state.contactData.orderForm,
-    authData: state.authData.orderForm
+    authData: state.authData
   };
 };
 
