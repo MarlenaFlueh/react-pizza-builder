@@ -97,40 +97,20 @@ const contactDataReducer = (state = initialState, action) => {
         }
         case types.GET_CONTACTDATA: {
 
-            // const newForm = {
-            //     ...state.orderForm,
-            //     [action.payload.address]: {
-            //         ...state.orderForm[action.payload.address],
-            //         ...state.orderForm[action.payload.address].elementConf,
-            //         //value: action.payload[key],
-            //         value: "test",
-            //         valid: checkValidity(action.payload.value, state.orderForm[action.payload.address].validation),
-            //         touched: true
-            //     }
-            // }
-
-            // return {
-            //     ...state,
-            //     orderForm: newForm
-            // }
-
+            const newForm = {};
             for (let key in action.payload) {
 
-                const newForm = {
-                    ...state.orderForm,
-                    [key]: {
-                        ...state.orderForm[key],
-                        ...state.orderForm[key].elementConf,
-                        value: action.payload[key],
-                        valid: true,
-                        touched: true
-                    }
+                newForm[key] = {
+                    ...state.orderForm[key].elementConf,
+                    value: action.payload[key],
+                    valid: true,
+                    touched: true
                 }
 
-                return {
-                    ...state,
-                    orderForm: newForm
-                }
+            }
+            return {
+                ...state,
+                orderForm: newForm
             }
         }
         default:

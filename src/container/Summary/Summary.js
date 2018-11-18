@@ -85,6 +85,8 @@ class Summary extends Component {
                 return obj;
             }, {});
 
+        console.log(filteredContactData)
+
         const ingredientsArray = [];
 
         for (let key in this.props.ings) {
