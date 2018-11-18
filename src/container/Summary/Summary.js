@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 
+import logo from "../../assets/bike.svg";
 import * as actions from "../../actions/";
 import * as Grid from "../Pizza/PizzaGrid";
 import { HeadingMargin, H2Margin } from "../../components/Heading/Heading";
@@ -25,6 +26,7 @@ left: 0;
 `;
 
 const OrderForm = styled.div`
+    background-color: ivory;
     margin: 20px auto;
     width: 80%;
     text-align: center;
@@ -35,6 +37,22 @@ const OrderForm = styled.div`
 
     @media (min-width: 600px) {
           width: 500px;
+    }
+`;
+
+const LogoImg = styled.img`
+	width: 400px;
+	margin-top: 12em;
+	opacity: 0.8;
+      transition:all 1s ease;
+      
+    &:hover{
+        -webkit-transform: scale(1.2);
+        -ms-transform: scale(1.2);
+        transform: scale(1.2);
+        filter: alpha(opacity=100);
+        opacity: 1.0;
+        cursor: pointer;
     }
 `;
 
@@ -77,22 +95,23 @@ class Summary extends Component {
             <Container>
                 <Grid.ImageGrid>
                     <OrderForm>
-                        <HeadingMargin>Bestelldetails</HeadingMargin>
-                        <H2Margin>Liefern an:</H2Margin>
-                        <p>Vorname: {filteredContactData.firstName.value}</p>
-                        <p>Nachname: {filteredContactData.lastName.value}</p>
-                        <p>Adresse: {filteredContactData.address.value}</p>
-                        <p>E-Mail: {filteredContactData.email.value}</p>
-                        <H2Margin>Zutaten:</H2Margin>
+                        <HeadingMargin>Delivery details:</HeadingMargin>
+                        <H2Margin>Your data:</H2Margin>
+                        <p>First name: {filteredContactData.firstName.value}</p>
+                        <p>Last name: {filteredContactData.lastName.value}</p>
+                        <p>Address: {filteredContactData.address.value}</p>
+                        <p>Email: {filteredContactData.email.value}</p>
+                        <H2Margin>Ingredients:</H2Margin>
                         {ingredientsArray.map(item => item.num === 1 ? <p key={item.name}>{item.name}</p> : null)}
-                        <H2Margin>Gesamtpreis: </H2Margin>{this.props.fullPrice.toFixed(2)}€
-                        <H2Margin>Lieferung erfolgt durch:</H2Margin>
+                        <H2Margin>Total price: </H2Margin>$ {this.props.fullPrice.toFixed(2)}
+                        <H2Margin>Delivery service:</H2Margin>
                         <p>PizzaHype GmbH</p>
                         <p>+49 245789275</p>
-                        <Button onClick={this.postOrderData}>jetzt bestellen</Button>
+                        <Button onClick={this.postOrderData}>order now</Button>
                     </OrderForm>
                 </Grid.ImageGrid>
                 <Grid.PizzaBuilderGrid>
+                    <LogoImg alt="Jetzt loslegen" src={logo} onClick={this.redirectToTarget} />
                 </Grid.PizzaBuilderGrid>
                 <Grid.OrderGrid>
                 </Grid.OrderGrid>

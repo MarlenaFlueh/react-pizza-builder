@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const ImageGrid = styled.div`
   grid-column: 1/6;
   grid-row: 2;
-  background-color: white;
+  background-color: #fabe5094;
 
   @media (min-width: 1050px) and (min-height: 700px) {
     grid-column: 4/6;

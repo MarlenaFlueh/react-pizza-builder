@@ -7,5 +7,5 @@ export const HeadingMargin = styled.h1`
 
 export const H2Margin = styled.h2`
   font-size: 1.1rem;
-  margin: 2rem;
+  margin: 1.2rem;
 `;

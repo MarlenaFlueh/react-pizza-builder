@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 
+import logo from "../../assets/logo.svg";
 import * as actions from "../../actions";
 import * as Grid from "../Pizza/PizzaGrid";
 import { HeadingMargin } from "../../components/Heading/Heading";
@@ -23,6 +24,7 @@ left: 0;
 `;
 
 const OrderForm = styled.div`
+    background-color: ivory;
     margin: 20px auto;
     width: 80%;
     text-align: center;
@@ -45,6 +47,22 @@ const Redirect = styled.p`
     }
 `;
 
+const LogoImg = styled.img`
+	width: 300px;
+	margin-top: 12em;
+	opacity: 0.7;
+      transition:all 1s ease;
+      
+    &:hover{
+        -webkit-transform: scale(1.2);
+        -ms-transform: scale(1.2);
+        transform: scale(1.2);
+        filter: alpha(opacity=100);
+        opacity: 1.0;
+        cursor: pointer;
+    }
+`;
+
 class Summary extends Component {
 
 
@@ -58,11 +76,12 @@ class Summary extends Component {
             <Container>
                 <Grid.ImageGrid>
                     <OrderForm>
-                        <HeadingMargin>Vielen Dank! Ihre Bestellung wird geliefert.</HeadingMargin>
-                        <Redirect onClick={this.redirectToTarget}>zurück zur Hauptseite...</Redirect>
+                        <HeadingMargin>Thank you! Your order will be delivered.</HeadingMargin>
+                        <Redirect onClick={this.redirectToTarget}>back home...</Redirect>
                     </OrderForm>
                 </Grid.ImageGrid>
                 <Grid.PizzaBuilderGrid>
+                    <LogoImg alt="Jetzt loslegen" src={logo} onClick={this.redirectToTarget} />
                 </Grid.PizzaBuilderGrid>
                 <Grid.OrderGrid>
                 </Grid.OrderGrid>

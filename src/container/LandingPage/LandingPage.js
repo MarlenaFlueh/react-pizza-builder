@@ -5,10 +5,15 @@ import img from "../../assets/pizzabg.jpg";
 import logo from "../../assets/logo.svg";
 
 const ContainerImg = styled.div`
+    display: flex:
+    justify-content: center;
+    text-align: center;
     background-image: url(${img});
-	height: -webkit-fill-available;
+    height: 100vh;
+    width: 100%;
+    margin: 0;
     overflow: auto;
-    margin: 0px;
+    background-attachment: fixed;
 `;
 
 const H3 = styled.div`
@@ -20,16 +25,9 @@ margin: 0px;
   	color: white;
 `;
 
-const Container = styled.div`
-    height: 100%;
-    margin: 0px;
-`;
-
 const LogoImg = styled.img`
 	width: 400px;
-	margin-top: 4em;
-	margin-left: 37em;
-	margin-bottom: 0.3em;
+	margin-top: 5%;
 	opacity: 0.7;
       transition:all 1s ease;
       
@@ -51,14 +49,11 @@ class LandingPage extends Component {
 
     render() {
         return (
-            <Container>
+            <ContainerImg>
                 <title>PizzaHype- DEINE Pizza</title>
-                <ContainerImg>
-                    <H3>Erstelle DEINE Pizza - Online</H3>
-                    <LogoImg alt="Jetzt loslegen" src={logo} onClick={this.redirectToTarget} />
-
-                </ContainerImg>
-            </Container>
+                <H3>Erstelle DEINE Pizza - Online</H3>
+                <LogoImg alt="Jetzt loslegen" src={logo} onClick={this.redirectToTarget} />
+            </ContainerImg>
         )
     }
 }

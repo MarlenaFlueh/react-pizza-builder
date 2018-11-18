@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const Button = styled.button`
-  background-color: white;
+  background-color: ivory;
   border-radius: 2px;
   outline: none;
   cursor: ${props => props.disabled ? "not-allowed" : "pointer"};

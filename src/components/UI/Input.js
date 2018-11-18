@@ -5,14 +5,12 @@ const InputField = styled.input`
     width: 100%;
     padding: 10px;
     box-sizing: border-box;
-
     font-weight: bold;
     display: block;
     margin-bottom: 8px;
-
     outline: none;
     border: ${props => props.invalid && props.touched ? "1px solid red" : "1px solid #ccc"};
-    background-color: white;
+    background-color: ivory;
     font: inherit;
     padding: 6px 10px;
     display: block;

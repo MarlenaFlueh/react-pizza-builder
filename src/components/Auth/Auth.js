@@ -8,6 +8,7 @@ import { HeadingMargin } from "../Heading/Heading";
 import Button from "../OrderOverview/Button";
 
 const Container = styled.div`
+    background-color: ivory;
     margin: 20px auto;
     width: 80%;
     text-align: center;

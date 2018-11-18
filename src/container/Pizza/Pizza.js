@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 
+import logo from "../../assets/logo.svg";
 import * as actions from "../../actions/";
 import * as Grid from "./PizzaGrid";
 import PizzaBuilder from "../../components/PizzaBuilder/PizzaBuilder";
@@ -24,6 +25,23 @@ export const Container = styled.div`
   }
 `;
 
+const LogoImg = styled.img`
+	width: 300px;
+	margin-top: 5rem;
+	margin-left: 10rem;
+	opacity: 0.8;
+      transition:all 1s ease;
+      
+    &:hover{
+        -webkit-transform: scale(1.2);
+        -ms-transform: scale(1.2);
+        transform: scale(1.2);
+        filter: alpha(opacity=100);
+        opacity: 1.0;
+        cursor: pointer;
+    }
+`;
+
 class Pizza extends Component {
 
   selectIngHandler = name => {
@@ -37,7 +55,10 @@ class Pizza extends Component {
   render() {
     return (
       <Container>
-        <Grid.ImageGrid />
+        <Grid.ImageGrid>
+          <LogoImg alt="Jetzt loslegen" src={logo} onClick={this.redirectToTarget} />
+
+        </Grid.ImageGrid>
         <Grid.ToolbarGrid>
           <Toolbar clicked={this.selectIngHandler} ings={this.props.ings} />
         </Grid.ToolbarGrid>

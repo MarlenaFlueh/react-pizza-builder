@@ -6,35 +6,37 @@ import * as utils from "../../utils";
 import Button from "./Button";
 
 const Ing = styled.label`
-  display: block;
-  width: 130px;
   font-weight: bold;
 `;
 
 const Span = styled.div`
-  display: flex;
   font: inherit;
-  padding: 2px;
-`;
-
-const Row = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  @media (min-width: 1000px) and (min-height: 700px) {
-    flex-direction: row;
-    height: 90%;
-  }
-`;
-
-const Col = styled.div`
-  display: flex;
-  flex-flow: column;
-  height: 100%;
+  padding: 0.3rem;
+  text-align: center;
 `;
 
 const H2 = styled.h2`
   margin-top: 0;
+  text-align: center;
+`;
+
+const Container = styled.div`
+  margin: 0 0 1.5rem 0;
+`;
+
+const OrderForm = styled.div`
+    background-color: #ffe487;
+    margin: auto;
+    width: 70%;
+    text-align: center;
+    box-shadow: 0 2px 3px #ccc;
+    padding: 10px;
+    box-sizing: border-box;
+
+    @media (min-width: 600px) {
+          width: 60%;
+          margin: 10px auto 10px 30%;
+    }
 `;
 
 class OrderOverview extends Component {
@@ -47,25 +49,23 @@ class OrderOverview extends Component {
     const ingredients = Object.keys(this.props.ings).map(ing => {
       if (this.props.ings[ing] === 1) {
         return (
-          <div key={ing}>
-            <Span>
-              <Ing>{utils.capitalize(ing)}</Ing>
-              {utils.prices[ing].toFixed(2)}€
-            </Span>
-          </div>
+          <Span key={ing}>
+            <Ing>{utils.capitalize(ing)}: </Ing>
+            ${utils.prices[ing].toFixed(2)}
+          </Span>
         );
       }
       return null;
     });
 
     return (
-      <Row>
-        <Col>
-          <H2>Gesamtpreis: {this.props.fullPrice.toFixed(2)}€</H2>
+      <OrderForm>
+        <H2>Total price: ${this.props.fullPrice.toFixed(2)}</H2>
+        <Container>
           {ingredients}
-        </Col>
-        {this.props.showBtn ? <Button onClick={this.redirectToTarget}>bestellen</Button> : null}
-      </Row>
+        </Container>
+        {this.props.showBtn ? <Button onClick={this.redirectToTarget}>order now</Button> : null}
+      </OrderForm>
     );
   }
 }

@@ -11,7 +11,7 @@ const ToolbarContainer = styled.div`
   border: 1px solid #eee;
   padding: 10px;
   box-sizing: border-box;
-  background-color: white;
+  background-color: ivory;
 
   @media (min-width: 500px) and (min-height: 401px) {
     width: 150px;
