@@ -1,5 +1,6 @@
 const urlSignup = "http://localhost:8080/signup";
 const urlLogin = "http://localhost:8080/login";
+const urlOrder = "http://localhost:8080/order";
 
 export const getUser = async (email, password) => {
     try {
@@ -32,9 +33,15 @@ export const postUser = async (firstName, lastName, address, password, email) =>
         .catch(error => console.error('Error:', error));
 }
 
-// export const postOrder = async orderData => {
-//     const res = await axios.post(urlOrder, {
-//         orderData
-//     });
-//     return res.data;
-// };
+export const postOrder = async (orderObject) => {
+
+    fetch(urlOrder, {
+        method: 'POST',
+        body: JSON.stringify(orderObject),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(res => res.json())
+        .then(response => console.log('Success:', JSON.stringify(response)))
+        .catch(error => console.error('Error:', error));
+}

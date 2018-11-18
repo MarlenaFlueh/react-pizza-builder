@@ -6,7 +6,7 @@ import * as actions from "../../actions/";
 import * as Grid from "../Pizza/PizzaGrid";
 import { HeadingMargin, H2Margin } from "../../components/Heading/Heading";
 import Button from "../../components/OrderOverview/Button";
-// import { postOrder } from "../../components/Api/Api";
+import { postOrder } from "../../components/Api/Api";
 
 export const Container = styled.div`
 display: grid;
@@ -40,35 +40,17 @@ const OrderForm = styled.div`
 
 class Summary extends Component {
 
-    componentDidMount() {
-        console.log(this.props.contactData)
-    }
-
     postOrderData = async () => {
 
-        const customer = Object.keys(this.props.contactData)
-            .reduce((obj, key) => {
-                obj[key] = this.props.contactData[key].value;
-                return obj;
-            }, {});
-
-        const ingredient = Object.keys(this.props.ings)
-            .filter(key => this.props.ings[key] === 1)
-            .reduce((obj, key) => {
-                obj[key] = this.props.ings[key];
-                return obj;
-            }, {});
-
-        const order = {
-            customer,
-            ingredient
+        const orderObject = {
+            customerEmail: this.props.contactData.email.value,
+            totalPrice: this.props.ings.fullPrice,
+            ings: this.props.ings.ings
         }
 
-        // not working yet, needs an api endpoint
-        // const postResponse = await postOrder(order);
-        // console.log(postResponse)
+        const postResponse = await postOrder(orderObject);
+        console.log(postResponse)
 
-        console.log(order)
     }
 
     redirectToTarget = () => {
@@ -85,14 +67,12 @@ class Summary extends Component {
                 return obj;
             }, {});
 
-        console.log(filteredContactData)
-
         const ingredientsArray = [];
 
-        for (let key in this.props.ings) {
+        for (let key in this.props.ings.ings) {
             ingredientsArray.push({
                 name: key.charAt(0).toUpperCase() + key.slice(1),
-                num: this.props.ings[key]
+                num: this.props.ings.ings[key]
             });
         }
 
@@ -126,7 +106,7 @@ class Summary extends Component {
 
 const mapStateToProps = state => {
     return {
-        ings: state.ingredients.ings,
+        ings: state.ingredients,
         fullPrice: state.ingredients.fullPrice,
         contactData: state.contactData.orderForm
     };
