@@ -58,7 +58,7 @@ class Signup extends Component {
                 </HeadingMargin>
                 <form onSubmit={this.submitHandler}>
                     {input}
-                    <Button disabled={!this.props.contactData.formIsValid} type="submit" onClick={this.props.clicked}>
+                    <Button disabled={!this.props.contactData.formIsValid} type="button" onClick={this.props.clicked}>
                         Sign up
                     </Button>
                 </form>
