@@ -4,5 +4,6 @@ body {
   font-family: sans-serif;
   font-size: 1.2rem;
   background-color: #ffe487;
-  background-attachment: fixed;  
+  background-attachment: fixed;
+  background-repeat: no-repeat;
 }

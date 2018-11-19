@@ -93,7 +93,8 @@ const contactDataReducer = (state = initialState, action) => {
             return {
                 ...state,
                 orderForm: updatedForm,
-                formIsValid
+                formIsValid,
+                error: false
             }
         }
         case types.GET_CONTACTDATA: {

@@ -22,26 +22,24 @@ export const postUser = async (firstName, lastName, address, password, email) =>
         email
     };
 
-    fetch(urlSignup, {
+    const res = await fetch(urlSignup, {
         method: 'POST',
         body: JSON.stringify(data),
         headers: {
             'Content-Type': 'application/json'
         }
-    }).then(res => res.json())
-        .then(response => console.log(response.success))
-        .catch(error => console.error('Error:', error));
+    });
+    return res.json();
 }
 
 export const postOrder = async (orderObject) => {
 
-    fetch(urlOrder, {
+    const res = fetch(urlOrder, {
         method: 'POST',
         body: JSON.stringify(orderObject),
         headers: {
             'Content-Type': 'application/json'
         }
-    }).then(res => res.json())
-        .then(response => console.log('Success:', JSON.stringify(response)))
-        .catch(error => console.error('Error:', error));
+    });
+    return res.json();
 }

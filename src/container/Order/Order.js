@@ -47,15 +47,17 @@ class Order extends Component {
 
   postSignupData = async () => {
 
-    const filteredContactData = Object.keys(this.props.contactData)
+    const filteredContactData = Object.keys(this.props.contactData.orderForm)
       .reduce((obj, key) => {
-        obj[key] = this.props.contactData[key];
+        obj[key] = this.props.contactData.orderForm[key];
         return obj;
       }, {});
 
     const res = await postUser(filteredContactData.firstName.value, filteredContactData.lastName.value, filteredContactData.address.value, filteredContactData.password.value, filteredContactData.email.value);
-    console.log(res)
-    this.props.history.push("/summary");
+    if (res.success) {
+      this.props.history.push("/summary");
+    }
+    this.props.contactDataFailed()
   }
 
   changeLoginHandler = () => {
@@ -116,7 +118,7 @@ const mapStateToProps = state => {
   return {
     ings: state.ingredients.ings,
     fullPrice: state.ingredients.fullPrice,
-    contactData: state.contactData.orderForm,
+    contactData: state.contactData,
     authData: state.authData
   };
 };
