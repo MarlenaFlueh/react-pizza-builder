@@ -17,7 +17,7 @@ const ToolbarContainer = styled.div`
     width: 150px;
   }
 
-  @media (min-width: 1000px) and (min-height: 700px) {
+  @media (min-width: 600px) and (min-height: 500px) {
     width: 200px;
     height: 100%;
   }

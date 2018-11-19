@@ -19,7 +19,7 @@ export const GridWrapper = styled.div`
   box-shadow: 1px 1px 1px 15px #fabe5094;
   border: 10px solid #fa8e50be;
 
-  @media (min-width: 1050px) and (min-height: 700px) {
+  @media (min-width: 700px) and (min-height: 500px) {
     box-shadow: 2px 2px 2px 30px #fabe5094;
     border: 20px solid #fa8e50be;
   }

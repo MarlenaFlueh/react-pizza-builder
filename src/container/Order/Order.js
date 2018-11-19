@@ -20,7 +20,7 @@ width: 100%;
 height: 100%;
 top: 0;
 left: 0;
-@media (min-width: 1050px) and (min-height: 700px) {
+@media (min-width: 600px) and (min-height: 500px) {
   grid-template-columns: 20% 25% 10% 10% 25% 10%;
   grid-auto-rows: 10% 20% 30% 40%;
 }

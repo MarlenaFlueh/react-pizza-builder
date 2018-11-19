@@ -12,7 +12,7 @@ const Button = styled.button`
   margin: 10px;
   font-weight: bold;
 
-  @media (min-width: 1000px) and (min-height: 700px) {
+  @media (min-width: 600px) and (min-height: 500px) {
     margin: auto;
   }
 `;

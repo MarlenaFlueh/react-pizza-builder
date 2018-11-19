@@ -23,7 +23,7 @@ const PizzaContainer = styled.div`
     height: 350px;
   }
 
-  @media (min-width: 1050px) and (min-height: 700px) {
+  @media (min-width: 600px) and (min-height: 500px) {
     width: 400px;
     height: 400px;
     margin: 20% 0;

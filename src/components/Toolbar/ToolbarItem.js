@@ -25,7 +25,7 @@ const Btn = styled.button`
     padding-left: 0;
   }
 
-  @media (min-width: 500px) and (min-height: 401px) {
+  @media (min-width: 600px) and (min-height: 500px) {
     margin: 5px;
   }
 `;
@@ -42,7 +42,7 @@ class ToolbarItem extends Component {
       left: 0;
       top: 5px;
 
-      @media (min-width: 500px) and (min-height: 401px) {
+      @media (min-width: 600px) and (min-height: 500px) {
         margin-bottom: 15px;
         left: 0;
         top: 10px;

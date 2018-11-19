@@ -9,7 +9,7 @@ export const Olive = styled.div`
   background-color: rgb(0, 0, 0);
   position: relative;
 
-  @media (min-width: 1050px) and (min-height: 700px) {
+  @media (min-width: 600px) and (min-height: 500px) {
     width: 15px;
     height: 25px;
     top: 30px;
@@ -27,7 +27,7 @@ export const Mozzarella = styled.div`
   display: block;
   border: 2px solid #ffe487;
 
-  @media (min-width: 1050px) and (min-height: 700px) {
+  @media (min-width: 600px) and (min-height: 500px) {
     width: 50px;
     height: 60px;
   }
@@ -42,7 +42,7 @@ export const RedPepper = styled.div`
   position: relative;
   transform: rotate(30deg);
 
-  @media (min-width: 1050px) and (min-height: 700px) {
+  @media (min-width: 600px) and (min-height: 500px) {
     width: 10px;
     height: 50px;
     left: 40px;
@@ -60,7 +60,7 @@ export const GreenPepper = styled.div`
   position: relative;
   transform: rotate(350deg);
 
-  @media (min-width: 1050px) and (min-height: 700px) {
+  @media (min-width: 600px) and (min-height: 500px) {
     width: 10px;
     height: 50px;
     left: 50px;
@@ -77,7 +77,7 @@ export const Pepperoni = styled.div`
   background-color: rgb(179, 18, 18);
   position: relative;
 
-  @media (min-width: 1050px) and (min-height: 700px) {
+  @media (min-width: 600px) and (min-height: 500px) {
     width: 50px;
     height: 50px;
     left: 40px;
@@ -122,7 +122,7 @@ position: relative;
   transform: rotate(45deg);
 }
 
-@media (min-width: 1050px) and (min-height: 700px) {
+@media (min-width: 600px) and (min-height: 500px) {
     height: 40px;
     width: 40px;
   &:before {
@@ -163,7 +163,7 @@ export const Mushroom = styled.div`
     transform: rotate(180deg);
   }
 
-  @media (min-width: 1050px) and (min-height: 700px) {
+  @media (min-width: 600px) and (min-height: 500px) {
     width: 25px;
     height: 30px;
     &:before {
