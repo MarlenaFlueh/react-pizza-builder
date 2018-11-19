@@ -8,6 +8,7 @@ const ContainerImg = styled.div`
     display: flex:
     justify-content: center;
     text-align: center;
+    background-repeat: no-repeat; 
     background-image: url(${img});
     height: 100vh;
     width: 100%;
@@ -28,7 +29,7 @@ margin: 0px;
 const LogoImg = styled.img`
 	width: 400px;
 	margin-top: 5%;
-	opacity: 0.7;
+    opacity: 0.7;
       transition:all 1s ease;
       
     &:hover{
@@ -50,8 +51,8 @@ class LandingPage extends Component {
     render() {
         return (
             <ContainerImg>
-                <title>PizzaHype- DEINE Pizza</title>
-                <H3>Erstelle DEINE Pizza - Online</H3>
+                <title>PizzaHype- your Pizza</title>
+                <H3>Create YOUR Pizza - Online</H3>
                 <LogoImg alt="Jetzt loslegen" src={logo} onClick={this.redirectToTarget} />
             </ContainerImg>
         )

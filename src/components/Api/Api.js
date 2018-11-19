@@ -34,7 +34,7 @@ export const postUser = async (firstName, lastName, address, password, email) =>
 
 export const postOrder = async (orderObject) => {
 
-    const res = fetch(urlOrder, {
+    const res = await fetch(urlOrder, {
         method: 'POST',
         body: JSON.stringify(orderObject),
         headers: {

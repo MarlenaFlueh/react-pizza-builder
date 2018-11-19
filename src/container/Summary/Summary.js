@@ -61,24 +61,26 @@ class Summary extends Component {
     postOrderData = async () => {
 
         const orderObject = {
-            customerEmail: this.props.contactData.email.value,
+            customerEmail: this.props.contactData.orderForm.email.value,
             totalPrice: this.props.ings.fullPrice,
             ings: this.props.ings.ings
         }
 
-        const postResponse = await postOrder(orderObject);
-        console.log(postResponse)
+        const res = await postOrder(orderObject);
+        if (res.success) {
+            this.props.history.push("/final");
+        }
+        console.log("Something went wrong.");
 
-        this.props.history.push("/final");
     }
 
     render() {
         const allowed = ["firstName", "lastName", "email", "address"]
 
-        const filteredContactData = Object.keys(this.props.contactData)
+        const filteredContactData = Object.keys(this.props.contactData.orderForm)
             .filter(key => allowed.includes(key))
             .reduce((obj, key) => {
-                obj[key] = this.props.contactData[key];
+                obj[key] = this.props.contactData.orderForm[key];
                 return obj;
             }, {});
 
@@ -124,7 +126,7 @@ const mapStateToProps = state => {
     return {
         ings: state.ingredients,
         fullPrice: state.ingredients.fullPrice,
-        contactData: state.contactData.orderForm
+        contactData: state.contactData
     };
 };
 
